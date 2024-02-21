@@ -21,3 +21,7 @@ Route::get('/', function () {
 Route::get('/admin', function () {
     return view('Admin/dashBoard');
 });
+
+Route::get('/artisan', function () {
+    return view('artisan.artisan');
+});
