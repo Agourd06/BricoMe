@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\adminController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,10 +19,15 @@ Route::get('/', function () {
 });
 
 
-Route::get('/admin', function () {
-    return view('Admin/dashBoard');
-});
 
 Route::get('/artisan', function () {
     return view('artisan.artisan');
 });
+
+
+
+// --------------------------------------------Admin----------------------------
+
+Route::post('/NewJob' , [adminController::class , 'NewJob']);
+Route::post('/NewComeptences' , [adminController::class , 'NewComeptences']);
+Route::get('/admin' , [adminController::class , 'adminPage']);
