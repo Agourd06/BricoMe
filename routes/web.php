@@ -27,6 +27,10 @@ Route::get('/artisan', function () {
 // ---------------------------------------Artisan----------------------------------
 Route::post('/registerArtisan',[UserController::class,'register']);
 
+Route::get('/client', function () {
+    return view('client.client');
+});
+
 
 
 
