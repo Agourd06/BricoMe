@@ -16,10 +16,10 @@ class artisan extends Model
         'skills[]' ,
         'photoTabs' ,
         'multiplePhotos[]' ,
-        'service1' ,
-        'tarif1' ,
-        'service2' ,
-        'tarif2' ,
+        
 
     ];
+    public function User (){
+        return $this->belongsTo(User::class);
+    }
 }

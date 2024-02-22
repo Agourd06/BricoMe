@@ -27,7 +27,7 @@ Route::get('/registreArtisan', function () {
     return view('artisan.registreArtisan');
 });
 // ---------------------------------------Artisan----------------------------------
-Route::post('/registerArtisan',[UserController::class,'register']);
+Route::post('/registerArtisan',[AuthController::class,'register']);
 
 // Route::get('/client', function () {
 //     return view('client.client');

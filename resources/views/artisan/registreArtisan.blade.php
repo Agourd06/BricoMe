@@ -77,6 +77,10 @@
                                 placeholder="phone" name="phone"></input>
                         </div>
                         <div class="flex flex-col">
+                            <input type="date" class="py-4 bg-white rounded-full px-6 placeholder:text-xs"
+                                placeholder="birthDay" name="birthDay"></input>
+                        </div>
+                        <div class="flex flex-col">
                             <label for="city" class="text-blue-900 font-bold mb-2 text-center mt-2">City</label>
                             <select id="city" name="city" class="py-4 bg-white rounded-full px-6 mb-4">
                                 <option value="" disabled selected>Sélectionnez votre ville</option>
@@ -119,7 +123,7 @@
                         </div>
                         <div class="flex flex-col">
                             <label class="text-blue-900 font-bold mb-2 text-center">Compétences</label>
-                            <select id="skills" name="skills[]" multiple
+                            <select id="skills" name="skills[]" 
                                 class="py-2 px-4 bg-white rounded-md border border-gray-300 mb-2">
                                 <option value="skill1">Compétence 1</option>
                                 <option value="skill2">Compétence 2</option>
@@ -141,30 +145,8 @@
                                     class="py-2 px-4 bg-white rounded-md border border-gray-300">
                             </div>
                         </div>
-
-
-                        <div class="mt-4" id="servicesPanel">
-                            <label class="text-blue-900 font-bold mb-2 text-center">Services et Tarifs :</label>
-
-                            <div class="grid grid-cols-2 gap-4">
-                                <div class="flex flex-col" <label for="service1">Service 1 :</label>
-                                    <input type="text" id="service1" name="service1"
-                                        class="py-2 px-4 bg-white rounded-md border border-gray-300 mb-2">
-                                    <label for="tarif1">Tarif pour le Service 1 :</label>
-                                    <input type="number" id="tarif1" name="tarif1"
-                                        class="py-2 px-4 bg-white rounded-md border border-gray-300">
-                                </div>
-
-                                <div class="flex flex-col">
-                                    <label for="service2">Service 2 :</label>
-                                    <input type="text" id="service2" name="service2"
-                                        class="py-2 px-4 bg-white rounded-md border border-gray-300 mb-2">
-                                    <label for="tarif2">Tarif pour le Service 2 :</label>
-                                    <input type="number" id="tarif2" name="tarif2"
-                                        class="py-2 px-4 bg-white rounded-md border border-gray-300">
-                                </div>
-                            </div>
-                        </div>
+                        <input type="hidden" name="role"  value="artisan"/>
+                       
                         <div class="flex justify-center">
                             <button
                                 class="rounded-full bg-blue-900 text-white font-bold py-4 px-6 min-w-40 hover:bg-blue-800 transition-all mt-4">SIGN
