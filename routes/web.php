@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\adminController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 
@@ -32,4 +33,4 @@ Route::get('/artisan', function () {
 Route::post('/NewJob' , [adminController::class , 'NewJob']);
 Route::post('/NewComeptences' , [adminController::class , 'NewComeptences']);
 Route::get('/admin' , [adminController::class , 'adminPage']);
-Route::post('/registerArtisan',[UserController::class,'register']);
+Route::post('/registerArtisan',[AuthController::class,'register']);

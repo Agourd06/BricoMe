@@ -13,7 +13,7 @@
 
 
     <form action="/registerArtisan" method="POST">
-      @csrf
+        @csrf
         <div class="relative flex min-h-screen flex-col justify-center overflow-hidden bg-gray-50 py-6 sm:py-12">
             <div class="bg-white max-w-4xl mx-auto w-full">
                 <div class="grid grid-cols-6 h-full">
@@ -51,11 +51,11 @@
                         <div class="grid gap-6 mb-6 grid-cols-2">
                             <div class="flex flex-col">
                                 <input type="text" class="py-4 bg-white rounded-full px-6 placeholder:text-xs"
-                                    placeholder="Votre nom" name="nom"></input>
+                                    placeholder="Votre nom" name="lname"></input>
                             </div>
                             <div class="flex flex-col">
                                 <input type="text" class="py-4 bg-white rounded-full px-6 placeholder:text-xs"
-                                    placeholder="Votre prénom" name="prénom"></input>
+                                    placeholder="Votre prénom" name="fname"></input>
                             </div>
                         </div>
                         <div class="flex flex-col">
@@ -74,7 +74,7 @@
                         </div>
                         <div class="flex flex-col">
                             <input type="tel" class="py-4 bg-white rounded-full px-6 placeholder:text-xs"
-                                placeholder="Votre Télephone" name="telephone"></input>
+                                placeholder="phone" name="phone"></input>
                         </div>
                         <div class="flex flex-col">
                             <label for="city" class="text-blue-900 font-bold mb-2 text-center mt-2">City</label>
@@ -98,7 +98,7 @@
                         <div class="flex flex-col">
                             <label for="profile-image" class="text-blue-900 -my-4 font-bold mb-2 text-center">Ajouter
                                 votre photo de profile</label>
-                            <input type="file" id="profile-image" name="profile-image" accept="image/*"
+                            <input type="file" id="profile-image" name="profil" accept="image/*"
                                 class="py-4 mb-2 bg-white rounded-full px-6 placeholder:text-xs">
                         </div>
                         <!-- Job Input -->
@@ -130,54 +130,24 @@
                                 <option value="skill3">Compétence 7</option>
                             </select>
                         </div>
-                        <label class="text-blue-900 font-bold mb-2">Voulez-vous ajouter une seule photo ou plusieurs
-                            ?</label>
-
-                        <input type="radio" id="singlePhotoTab" name="photoTabs" class="hidden" checked>
-                        <input type="radio" id="multiplePhotosTab" name="photoTabs" class="hidden">
-
-                        <div class="flex items-center">
-                            <label for="singlePhotoTab"
-                                class="cursor-pointer mt-2  py-2 px-4 bg-white rounded-l-md border border-gray-300 hover:bg-gray-100">Une
-                                seule photo</label>
-                            <label for="multiplePhotosTab"
-                                class="cursor-pointer mt-2 py-2 px-4 bg-white rounded-r-md border border-gray-300 hover:bg-gray-100">Plusieurs
-                                photos</label>
-                        </div>
+                 
 
                         <div class="mt-4">
-                            <div id="singlePhotoPanel" class="border border-gray-300 rounded-md p-4">
-                                <label class="text-blue-900 font-bold mb-2">Ajouter une seule photo :</label>
-                                <!-- Champs pour une seule photo -->
-                                <input type="file" name="singlePhoto"
-                                    class="py-2 px-4 bg-white rounded-md border border-gray-300">
-                            </div>
 
-                            <div id="multiplePhotosPanel" class="hidden mt-4 border border-gray-300 rounded-md p-4">
-                                <label class="text-blue-900 font-bold mb-2">Ajouter plusieurs photos :</label>
+                            <div id="multiplePhotosPanel" class=" mt-4 border border-gray-300 rounded-md p-4">
+                                <label class="text-blue-900 font-bold mb-2">Add one or multiple pictures</label>
                                 <!-- Champs pour plusieurs photos -->
                                 <input type="file" name="multiplePhotos[]" multiple
                                     class="py-2 px-4 bg-white rounded-md border border-gray-300">
                             </div>
                         </div>
 
-                        <script>
-                            document.getElementById('singlePhotoTab').addEventListener('click', function() {
-                                document.getElementById('singlePhotoPanel').classList.remove('hidden');
-                                document.getElementById('multiplePhotosPanel').classList.add('hidden');
-                            });
 
-                            document.getElementById('multiplePhotosTab').addEventListener('click', function() {
-                                document.getElementById('singlePhotoPanel').classList.add('hidden');
-                                document.getElementById('multiplePhotosPanel').classList.remove('hidden');
-                            });
-                        </script>
                         <div class="mt-4" id="servicesPanel">
                             <label class="text-blue-900 font-bold mb-2 text-center">Services et Tarifs :</label>
 
                             <div class="grid grid-cols-2 gap-4">
-                                <div class="flex flex-col">
-                                    <label for="service1">Service 1 :</label>
+                                <div class="flex flex-col" <label for="service1">Service 1 :</label>
                                     <input type="text" id="service1" name="service1"
                                         class="py-2 px-4 bg-white rounded-md border border-gray-300 mb-2">
                                     <label for="tarif1">Tarif pour le Service 1 :</label>
