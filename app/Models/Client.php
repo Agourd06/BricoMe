@@ -5,19 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class artisan extends Model
+class Client extends Model
 {
     use HasFactory;
-
     protected $fillable = [
-        'iser_id',
-        'description' ,
-        'job' ,
-        'skills[]' ,
-        'photoTabs' ,
-        'multiplePhotos[]' ,
-        
-
+        'description',
+        'user_id'
     ];
     public function User (){
         return $this->belongsTo(User::class);

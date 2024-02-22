@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\adminController;
-use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\adminController;
+use App\Http\Controllers\ClientController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,11 +29,17 @@ Route::get('/registreArtisan', function () {
 // ---------------------------------------Artisan----------------------------------
 Route::post('/registerArtisan',[AuthController::class,'register']);
 
+// Route::get('/client', function () {
+//     return view('client.client');
+// });
+
+
 Route::get('/client', function () {
-    return view('client.client');
+    return view('client.RegisterClient');
 });
 
-
+// Register // 
+Route::post('/register', [ClientController::class, 'Register']);
 
 
 // --------------------------------------------Admin----------------------------
@@ -45,4 +52,5 @@ Route::post('/archive' , [adminController::class , 'archive']);
 Route::post('/editData' , [adminController::class , 'adminPage']);
 Route::post('/editcom' , [adminController::class , 'adminPage']);
 Route::get('/admin' , [adminController::class , 'adminPage']);
+
 Route::post('/registerArtisan',[AuthController::class,'register']);

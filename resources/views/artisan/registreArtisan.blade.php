@@ -77,6 +77,10 @@
                                 placeholder="phone" name="phone"></input>
                         </div>
                         <div class="flex flex-col">
+                            <input type="date" class="py-4 bg-white rounded-full px-6 placeholder:text-xs"
+                                placeholder="birthDay" name="birthDay"></input>
+                        </div>
+                        <div class="flex flex-col">
                             <label for="city" class="text-blue-900 font-bold mb-2 text-center mt-2">City</label>
                             <select id="city" name="city" class="py-4 bg-white rounded-full px-6 mb-4">
                                 <option value="" disabled selected>Sélectionnez votre ville</option>
