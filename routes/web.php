@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\adminController;
-use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\adminController;
+use App\Http\Controllers\ClientController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,9 +29,9 @@ Route::get('/artisan', function () {
 // ---------------------------------------Artisan----------------------------------
 Route::post('/registerArtisan',[UserController::class,'register']);
 
-Route::get('/client', function () {
-    return view('client.client');
-});
+// Route::get('/client', function () {
+//     return view('client.client');
+// });
 
 
 Route::get('/client', function () {
@@ -38,9 +39,7 @@ Route::get('/client', function () {
 });
 
 // Register // 
-Route::post('/register', function (){
-    return "thank you";
-});
+Route::post('/register', [ClientController::class, 'Register']);
 
 
 // --------------------------------------------Admin----------------------------

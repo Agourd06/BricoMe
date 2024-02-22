@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Client;
 use Illuminate\Http\Request;
 
@@ -12,8 +13,27 @@ class ClientController extends Controller
      */
     public function Register(Request $request){
         $userval = $request->validate([
-            
+            'lname' => ['required', 'min:3', 'max:10'],
+            'fname' => ['required', 'min:3', 'max:10'],
+            'email' => ['required', 'email'],
+            'password' => ['required', 'min:8', 'max:200'],
+            'telephone' => 'required',
+            'city' => 'required',
+            'description' => 'required',
+            'profile-image' => 'required|image|mimes:jpeg,png,jpg,gif',
         ]);
+        $userval['password'] = bcrypt($userval['password']);
+        $user = User::create($userval);
+        
+
+        $client = Client::create([
+            'cpassword' => ['required', 'min:3', 'max:10'],
+            'description' => 'required',
+        ]);
+        $client['user_id'] = Auth::id();
+        
+
+       
     }
     public function index()
     {

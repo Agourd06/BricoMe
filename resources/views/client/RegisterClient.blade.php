@@ -33,10 +33,10 @@
         @csrf
         <div class="grid gap-6 mb-6 grid-cols-2">
           <div class="flex flex-col">
-            <input type="text" class="py-4 bg-white rounded-full px-6 placeholder:text-xs" placeholder="Your lastname" name="nom"></input>
+            <input type="text" class="py-4 bg-white rounded-full px-6 placeholder:text-xs" placeholder="Your lastname" name="lname"></input>
           </div>
           <div class="flex flex-col">
-            <input type="text" class="py-4 bg-white rounded-full px-6 placeholder:text-xs"  placeholder="Your firstname" name="prénom"></input>
+            <input type="text" class="py-4 bg-white rounded-full px-6 placeholder:text-xs"  placeholder="Your firstname" name="fname"></input>
           </div>
         </div>
         <div class="flex flex-col my-4">
