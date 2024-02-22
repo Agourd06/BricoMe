@@ -16,7 +16,7 @@ use App\Http\Controllers\UserController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('Login');
 });
 
 
@@ -29,6 +29,9 @@ Route::post('/registerArtisan',[UserController::class,'register']);
 
 Route::get('/client', function () {
     return view('client.client');
+});
+Route::get('/adminUsers', function () {
+    return view('Admin.Users');
 });
 
 
