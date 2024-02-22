@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\adminController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 
@@ -44,3 +45,4 @@ Route::post('/archive' , [adminController::class , 'archive']);
 Route::post('/editData' , [adminController::class , 'adminPage']);
 Route::post('/editcom' , [adminController::class , 'adminPage']);
 Route::get('/admin' , [adminController::class , 'adminPage']);
+Route::post('/registerArtisan',[AuthController::class,'register']);
