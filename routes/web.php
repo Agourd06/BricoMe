@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\adminController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 
@@ -24,6 +25,13 @@ Route::get('/', function () {
 Route::get('/artisan', function () {
     return view('artisan.artisan');
 });
+// ---------------------------------------Artisan----------------------------------
+Route::post('/registerArtisan',[UserController::class,'register']);
+
+Route::get('/client', function () {
+    return view('client.client');
+});
+
 
 Route::get('/client', function () {
     return view('client.RegisterClient');
@@ -38,6 +46,12 @@ Route::post('/register', function (){
 // --------------------------------------------Admin----------------------------
 
 Route::post('/NewJob' , [adminController::class , 'NewJob']);
+Route::post('/updateJob' , [adminController::class , 'updateJob']);
 Route::post('/NewComeptences' , [adminController::class , 'NewComeptences']);
+Route::post('/updateComeptences' , [adminController::class , 'updateCompetence']);
+Route::post('/archive' , [adminController::class , 'archive']);
+Route::post('/editData' , [adminController::class , 'adminPage']);
+Route::post('/editcom' , [adminController::class , 'adminPage']);
 Route::get('/admin' , [adminController::class , 'adminPage']);
-Route::post('/registerArtisan',[UserController::class,'register']);
+
+Route::post('/registerArtisan',[AuthController::class,'register']);

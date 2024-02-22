@@ -4,12 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class AuthController extends Controller
 {
     public function register(request $request){
         $userData = $request->validate([
-            'nom' => 'required',
-            'prénom' => 'required',
+            'lname' => 'required',
+            'fname' => 'required',
             'email' => 'required',
             'password' => 'required',
             'cpassword' => 'required',

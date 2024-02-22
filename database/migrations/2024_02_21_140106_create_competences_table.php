@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('competences', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->enum('statut' ,['0','1'])->default('0');
             $table->foreignId('id_job')->constrained('jobs')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });

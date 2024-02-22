@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('jobs', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->enum('statut' ,['0','1'])->default('0');
             $table->timestamps();
         });
     }
