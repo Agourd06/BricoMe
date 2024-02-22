@@ -29,37 +29,38 @@
       </div>
       <div class="bg-slate-100 p-14 col-span-4">
         <h2 class="mb-14 font-bold text-4xl text-[#F9B100] before:block before:absolute before:bg-sky-300 before:content[''] relative before:w-20 before:h-1 before:-skew-y-3 before:-bottom-4 text-center">SIGN UP</h2>
-        <form action="" method="post">       
+        <form action="/register" method="post">       
+        @csrf
         <div class="grid gap-6 mb-6 grid-cols-2">
           <div class="flex flex-col">
-            <input type="text" class="py-4 bg-white rounded-full px-6 placeholder:text-xs" placeholder="Votre nom" name="nom"></input>
+            <input type="text" class="py-4 bg-white rounded-full px-6 placeholder:text-xs" placeholder="Your lastname" name="nom"></input>
           </div>
           <div class="flex flex-col">
-            <input type="text" class="py-4 bg-white rounded-full px-6 placeholder:text-xs"  placeholder="Votre prénom" name="prénom"></input>
+            <input type="text" class="py-4 bg-white rounded-full px-6 placeholder:text-xs"  placeholder="Your firstname" name="prénom"></input>
           </div>
         </div>
         <div class="flex flex-col my-4">
-        <label for="birth_date" class="text-[#F9B100] -my-4 font-bold mb-2 text-center">Ajouter votre date de naissance</label>
-            <input id="birth_date" type="date" class="py-4 bg-white rounded-full px-6 placeholder:text-xs"  placeholder="Votre date de naissance" name="birthdate"></input>
+        <label for="birth_date" class="text-[#F9B100] -my-4 font-bold mb-2 text-center">Add your birthdate</label>
+            <input id="birth_date" type="date" class="py-4 bg-white rounded-full px-6 placeholder:text-xs"  placeholder="Your birthday date" name="birthdate"></input>
           </div>
         <div class="flex flex-col">
-            <input type="text" class="py-4 bg-white rounded-full px-6 placeholder:text-xs mb-4"  placeholder="Votre email" name="email"></input>
+            <input type="text" class="py-4 bg-white rounded-full px-6 placeholder:text-xs mb-4"  placeholder="Your email" name="email"></input>
           </div>
         <div class="grid gap-6 mb-6 grid-cols-2">
           <div class="flex flex-col">
-            <input class="py-4 bg-white rounded-full px-6 placeholder:text-xs"  placeholder="Mot de passe" name="password"></input>
+            <input class="py-4 bg-white rounded-full px-6 placeholder:text-xs"  placeholder="Your password here" name="password"></input>
           </div>
           <div class="flex flex-col">
-            <input class="py-4 bg-white rounded-full px-6 placeholder:text-xs"  placeholder="Confirmer mot de passe" name="cpassword"></inpu>
+            <input class="py-4 bg-white rounded-full px-6 placeholder:text-xs"  placeholder="Confirm your password" name="cpassword"></inpu>
           </div>
         </div>
         <div class="flex flex-col">
-            <input type="text" class="py-4 bg-white rounded-full px-6 placeholder:text-xs" placeholder="Votre Télephone" name="telephone"></input>
+            <input type="text" class="py-4 bg-white rounded-full px-6 placeholder:text-xs" placeholder="Your phone number" name="telephone"></input>
           </div>
           <div class="flex flex-col">
         <label for="city" class="text-[#F9B100] font-bold mb-2 text-center mt-2">City</label>
         <select id="city" name="city" class="py-4 bg-white rounded-full px-6 mb-4">
-            <option value="" disabled selected>Sélectionnez votre ville</option>
+            <option value="" disabled selected>select your city</option>
             <option value="safi">Safi</option>
             <option value="casablanca">Casablanca</option>
             <option value="chefchaouen">chefchaouen</option>
@@ -72,10 +73,10 @@
         </select>
     </div>
         <div class="mb-6">
-          <textarea class="w-full rounded-2xl placeholder:text-xs px-6 py-4 resize-none	m-t-2" placeholder="Votre description" name="description" id="" rows="3"></textarea>
+          <textarea class="w-full rounded-2xl placeholder:text-xs px-6 py-4 resize-none	m-t-2" placeholder="add a description of you" name="description" id="" rows="3"></textarea>
         </div>
         <div class="flex flex-col">
-            <label for="profile-image" class="text-[#F9B100] -my-4 font-bold mb-2 text-center">Ajouter votre photo de profile</label>
+            <label for="profile-image" class="text-[#F9B100] -my-4 font-bold mb-2 text-center">Add your profile picture</label>
             <input type="file" id="profile-image" name="profile-image" accept="image/*" class="py-4 mb-2 bg-white rounded-full px-6 placeholder:text-xs">
         </div>
         <div class="flex justify-center">
