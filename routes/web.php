@@ -24,6 +24,10 @@ Route::get('/', function () {
 Route::get('/artisan', function () {
     return view('artisan.artisan');
 });
+Route::get('/client', function () {
+    return view('client.client');
+});
+
 
 
 
