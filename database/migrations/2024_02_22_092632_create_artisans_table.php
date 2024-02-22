@@ -16,13 +16,10 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('description');
             $table->string('job');
-            $table->string('photoTabs');
-            $table->string('skills[]');
-            $table->json('multiplePhotos[]');
-            $table->string('service1');
-            $table->string('tarif1');
-            $table->string('service2');
-            $table->string('tarif2');
+            $table->json('skills');
+            $table->json('multiplePhotos');
+            $table->string('tarif')->nullable();
+           
             
             $table->timestamps();
         });
