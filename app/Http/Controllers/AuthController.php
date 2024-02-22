@@ -69,10 +69,20 @@ class AuthController extends Controller
         
         );
 
-        }
-        // else if(){
+        }elseif ($userData['role'=== 'client']){
+            $clientData = $request->validate([
+                'description' => 'required',
+           
 
-        // }
+            ],
+            [
+                'description.required' => 'Description is empty! Please fill it out.',
+            ]
+        
+        );
+
+        }
+     
            
         if($userData['password'] !== $userData['cpassword']){
             return back()->with('error','Passwords do not match');
@@ -83,6 +93,7 @@ class AuthController extends Controller
             $pictureName = time() . '.';
 
         }
+        
    
         return view('artisan.artisan');
     }
