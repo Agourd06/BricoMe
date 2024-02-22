@@ -24,6 +24,9 @@ Route::get('/', function () {
 Route::get('/artisan', function () {
     return view('artisan.artisan');
 });
+// ---------------------------------------Artisan----------------------------------
+Route::post('/registerArtisan',[UserController::class,'register']);
+
 Route::get('/client', function () {
     return view('client.client');
 });
@@ -34,6 +37,10 @@ Route::get('/client', function () {
 // --------------------------------------------Admin----------------------------
 
 Route::post('/NewJob' , [adminController::class , 'NewJob']);
+Route::post('/updateJob' , [adminController::class , 'updateJob']);
 Route::post('/NewComeptences' , [adminController::class , 'NewComeptences']);
+Route::post('/updateComeptences' , [adminController::class , 'updateCompetence']);
+Route::post('/archive' , [adminController::class , 'archive']);
+Route::post('/editData' , [adminController::class , 'adminPage']);
+Route::post('/editcom' , [adminController::class , 'adminPage']);
 Route::get('/admin' , [adminController::class , 'adminPage']);
-Route::post('/registerArtisan',[UserController::class,'register']);
