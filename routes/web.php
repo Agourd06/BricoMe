@@ -23,7 +23,7 @@ Route::get('/', function () {
 
 
 Route::get('/artisan', function () {
-    return view('artisan.artisan');
+    return view('artisan.registerArtisan');
 });
 // ---------------------------------------Artisan----------------------------------
 Route::post('/registerArtisan',[UserController::class,'register']);
