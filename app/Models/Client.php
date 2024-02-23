@@ -2,10 +2,16 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\trait\HeritageTrait;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Client extends Model
 {
-    use HasFactory;
+    use HasFactory , HeritageTrait;
+    protected $fillable = [
+        'description',
+        'user_id'
+    ];
+ 
 }

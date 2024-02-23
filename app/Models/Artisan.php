@@ -2,24 +2,29 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\trait\HeritageTrait;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class artisan extends Model
+class Artisan extends Model
 {
-    use HasFactory;
+    use HasFactory , HeritageTrait;
 
     protected $fillable = [
-        'iser_id',
-        'description' ,
-        'job' ,
-        'skills[]' ,
-        'photoTabs' ,
-        'multiplePhotos[]' ,
-        'service1' ,
-        'tarif1' ,
-        'service2' ,
-        'tarif2' ,
-
+        'user_id',
+        'description',
+        'job',
+        'skills',
+        'multiplePhotos',
     ];
+
+    public function images()
+    {
+        return $this->hasMany(Image::class);
+    }
+
+    public function artisancompetences()
+    {
+        return $this->hasMany(artisanCompetence::class);
+    }
 }

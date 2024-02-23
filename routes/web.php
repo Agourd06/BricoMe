@@ -1,9 +1,12 @@
 <?php
 
-use App\Http\Controllers\adminController;
-use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\adminController;
+use App\Http\Controllers\loginController;
+use App\Http\Controllers\ClientController;
+use App\Http\Middleware\RedirectIfAuthenticated;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,27 +21,49 @@ use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return view('Login');
-});
+})->middleware(RedirectIfAuthenticated::class);
 
 
 
-Route::get('/artisan', function () {
-    return view('artisan.registerArtisan');
-});
-// ---------------------------------------Artisan----------------------------------
-Route::post('/registerArtisan',[UserController::class,'register']);
 
-Route::get('/client', function () {
-    return view('client.client');
+Route::get('/admin', function () {
+    return view('admin.dashboard');
 });
-Route::get('/adminUsers', function () {
-    return view('Admin.Users');
-});
+//----------------------------------------------- Client---------------------------------
+
+
+
+Route::middleware(['auth', 'role:Client'])->group(function () {
+    Route::get('/Client', function () {
+        return view('client.Client');
+    });
+    
+    });
+//----------------------------------------------- Artisan---------------------------------
+
+
+Route::middleware(['auth', 'role:Artisan'])->group(function () {
+    Route::get('/Artisan', function () {
+        return view('artisan.Artisan');
+    });
+    });
+// ---------------------------------------Authentication----------------------------------
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [loginController::class, 'login']);
+Route::get('/logout', [loginController::class, 'logout']);
+Route::get('/ArtisanRegister', [AuthController::class, 'ArtisanRegisterData'])->middleware(RedirectIfAuthenticated::class);
+Route::get('/RegisterClient', function () {
+    return view('client.RegisterClient');
+})->middleware(RedirectIfAuthenticated::class);
+
+
+
 
 
 
 
 // --------------------------------------------Admin----------------------------
+Route::middleware(['auth', 'role:Admin'])->group(function () {
 
 Route::post('/NewJob' , [adminController::class , 'NewJob']);
 Route::post('/updateJob' , [adminController::class , 'updateJob']);
@@ -48,4 +73,7 @@ Route::post('/archive' , [adminController::class , 'archive']);
 Route::post('/editData' , [adminController::class , 'adminPage']);
 Route::post('/editcom' , [adminController::class , 'adminPage']);
 Route::get('/admin' , [adminController::class , 'adminPage']);
-Route::post('/registerArtisan',[AuthController::class,'register']);
+Route::get('/adminUsers', function () {
+    return view('Admin.Users');
+});
+});

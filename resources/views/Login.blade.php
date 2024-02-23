@@ -6,7 +6,8 @@
                 <div class="rounded-md h-full shadow-2xl">
                     <img class="rounded-md shadow-2xl h-full" src="https://www.salon-maison-bois.com/wp-content/uploads/2021/11/homme-dans-son-atelier-de-bricolage-1165x675.jpg" alt="">
                 </div>
-                <form class="bg-white rounded-xl px-6 py-8 space-y-6 max-w-md md:ml-auto max-md:mx-auto w-full">
+                <form action="/login" method="POST" class="bg-white rounded-xl px-6 py-8 space-y-6 max-w-md md:ml-auto max-md:mx-auto w-full">
+                   @csrf
                     <h3 class="text-3xl font-extrabold mb-12 max-md:text-center">
                         Sign in
                     </h3>
@@ -22,7 +23,7 @@
                     </div>
                
                     <div class="!mt-10">
-                        <button type="button"
+                        <button type="submit"
                             class="w-full shadow-xl py-2.5 px-4 text-sm font-semibold rounded text-white bg-[#333] hover:bg-[#222] focus:outline-none">
                             Log in
                         </button>
@@ -68,10 +69,12 @@
                             </svg>
                         </button>
                     </div>
-                    <div class="w-full text-center">           <p class="text-sm mt-10 text-black">Don't have an account <a href="javascript:void(0);"
-                        class="text-blue-500 font-semibold underline ml-1">Register here</a></p></div>
+                    <div class="w-full text-center">           <p class="text-sm mt-10 text-black">Don't have an account Register here As<a href="/ArtisanRegister"
+                        class="text-blue-500 font-semibold underline ml-1">Artisan</a> Or As<a href="/RegisterClient"
+                        class="text-blue-500 font-semibold underline ml-1">Client</a></p></div>
          
-
+                        
+                        
                 </form>
             </div>
         </div>
