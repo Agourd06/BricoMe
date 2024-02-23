@@ -15,44 +15,7 @@
 
 <body class="text-gray-800 font-inter">
     <section class="w-full   bg-gray-50 min-h-screen transition-all main">
-        <div class="py-2 px-6 bg-[#3554AD] flex items-center shadow-md shadow-black/5 sticky -top-0.5 left-0 z-30">
-            <ul class="flex items-center text-sm ml-4">
-                <li class="mr-2">
-                    <a href="" class="text-gray-400 hover:text-gray-600 font-medium">Administration</a>
-                </li>
-                <li class="text-gray-300 mr-2 font-medium">/</li>
-                <li class="text-white mr-2 font-medium">dashboard</li>
-            </ul>
-            <div class="md:absolute md:right-10 md:flex md:items-center max-md:ml-auto">
-
-
-
-
-                <div class=" inline-block w- border-gray-300 border-l-2 pl-6 cursor-pointer ">
-                    <button onclick="toggleModal('ProfilPop')"><svg xmlns="http://www.w3.org/2000/svg" width="20px"
-                            height="20px" viewBox="0 0 24 24" class="hover:fill-[#F9B100]">
-                            <circle cx="10" cy="7" r="6" data-original="#000000" />
-                            <path
-                                d="M14 15H6a5 5 0 0 0-5 5 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 5 5 0 0 0-5-5zm8-4h-2.59l.3-.29a1 1 0 0 0-1.42-1.42l-2 2a1 1 0 0 0 0 1.42l2 2a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42l-.3-.29H22a1 1 0 0 0 0-2z"
-                                data-original="#000000" />
-                        </svg>
-                    </button>
-                    <div class="absolute z-50 w-[120px] hidden h-[85px] md:top-full rounded-md right-2 drop-shadow-2xl"
-                        id="ProfilPop">
-                        <a href='/profilPassager'
-                            class='hover:bg-[#EACE00] rounded-t-md duration-300 hover:text-white w-full h-[50%] bg-white text-gray-600 font-bold text-[15px] flex items-center justify-center'>Réclamation</a>
-                        <a href='/logout'
-                            class='hover:bg-[#EACE00] rounded-b-md duration-300 hover:text-white w-full h-[50%] bg-gray-300 text-gray-600 font-bold text-[15px] flex items-center justify-center'>log
-                            out</a>
-                    </div>
-                </div>
-                <a href=""> <span
-                        class="absolute md:-mt-2.5   rounded-[0.37rem] bg-red-800 px-[0.45em] py-[0.2em] text-[0.6rem] leading-none text-white">1</span>
-                </a>
-
-
-            </div>
-        </div>
+       @include('layouts/admineNav')
         <div class="p-6">
             <div class="grid grid-cols-2 md:grid-cols-4  gap-6 my-6">
                 <div class="bg-white rounded-md border border-gray-100 p-6 shadow-md shadow-black/5">

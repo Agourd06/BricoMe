@@ -16,7 +16,6 @@
     <body class="antialiased">
     @yield('welcome')
     @yield('client')
-    @yield('artisan')
 
 
 </body>
