@@ -14,4 +14,7 @@ class job extends Model
    public function competence(){
     return $this->HasMany(Competence::class , 'id_job');
 }
+   public function artisans(){
+    return $this->hasMany(Artisan::class);
+}
 }

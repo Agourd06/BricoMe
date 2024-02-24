@@ -8,16 +8,21 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Artisan extends Model
 {
-    use HasFactory , HeritageTrait;
+    use HasFactory, HeritageTrait;
 
     protected $fillable = [
         'user_id',
         'description',
-        'job',
+        'job_id',
+        'tarif',
         'skills',
         'multiplePhotos',
     ];
 
+    public function job()
+    {
+        return $this->belongsTo(job::class, 'job_id');
+    }
     public function images()
     {
         return $this->hasMany(Image::class);

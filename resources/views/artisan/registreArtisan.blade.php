@@ -129,7 +129,7 @@
                         <!-- Job Input -->
                         <div class="flex flex-col">
                             <label for="job" class="text-blue-900 font-bold mb-2 text-center">Métier</label>
-                            <select id="job" name="job" class="py-4 bg-white rounded-full px-6">
+                            <select id="job" name="job_id" class="py-4 bg-white rounded-full px-6">
                                 <option value="" disabled selected>Select Your Job</option>
                                 @foreach ($jobs as $job)
                                     <option value="{{ $job->id }}">{{ $job->name }}</option>
