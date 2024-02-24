@@ -27,6 +27,7 @@ return new class extends Migration
     {
         Schema::dropIfExists('clients', function (Blueprint $table){
             $table->dropColumn('user_id');
+            
         });
     }
 };
