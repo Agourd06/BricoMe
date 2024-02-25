@@ -77,7 +77,7 @@ class adminController extends Controller
     public function UsersAdmin()
     {
         // ----------------userAdmin data----------------
-        $artisans = Artisan::with('job', 'user')->get();
+        $artisans = Artisan::with('artisanJobs', 'user' )->get();
         
         $Clients = Client::with('user')->get();
         return view('Admin.Users', [
