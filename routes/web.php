@@ -34,9 +34,8 @@ Route::get('/admin', function () {
 
 
 Route::middleware(['auth', 'role:Client'])->group(function () {
-    Route::get('/Client', function () {
-        return view('client.Client');
-    });
+    Route::get('/Client', [ClientController::class , 'clientArtisans']);
+   
 });
 //----------------------------------------------- Artisan---------------------------------
 

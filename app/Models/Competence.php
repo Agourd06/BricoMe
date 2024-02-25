@@ -15,4 +15,8 @@ class Competence extends Model
     public function job(){
         return $this->belongsTo(job::class , 'id_job');
     }
+    public function artisans()
+    {
+        return $this->belongsToMany(Artisan::class, 'artisan_competences', 'competence', 'artisan_id');
+    }
 }
