@@ -14,7 +14,7 @@ class ClientController extends Controller
     public function clientArtisans(Request $request)
     {
         // ----------------userAdmin Client----------------
-        $query = Artisan::with('artisanJobs', 'user', 'artisanCompetence');
+        $query = Artisan::with('artisanJobs', 'user', 'artisanCompetence')->where('availablity' , 'Available');
 
         if ($request->filled('filterJobs')) {
             $query = $query->whereHas('jobs', function ($jobsQuery) use ($request) {
@@ -49,6 +49,15 @@ class ClientController extends Controller
             'jobs' => $jobs,
             'competences' => $competences,
             'citys' => $citys,
+        ]);
+    }
+    public function Reserve(Request $request){
+        $artisan_id = $request->input('artisan_id');
+        $ArtisanData = Artisan::with('artisanJobs', 'user', 'artisanCompetence')
+        ->where('user_id', $artisan_id)
+        ->firstOrFail();
+        return view('client.reserveArtisan' , [
+            'ArtisanData' => $ArtisanData,
         ]);
     }
 }

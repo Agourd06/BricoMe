@@ -39,6 +39,8 @@ class Artisan extends Model
 
     public function competences()
     {
-        return $this->belongsToMany(Competence::class, 'artisan_competences', 'artisan_id', 'competence');
+        return $this->belongsToMany(Competence::class, 'artisan_competences', 'artisan_id', 'competence')->withPivot('tarif');
     }
+
+
 }

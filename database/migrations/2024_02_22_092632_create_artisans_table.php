@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('description');
             $table->enum('availablity' ,['Available','Reserved'])->default('Available');
-            $table->string('tarif')->nullable();
+            $table->string('Avg')->nullable();
             $table->timestamps();
         });
         

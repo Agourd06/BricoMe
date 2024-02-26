@@ -123,10 +123,10 @@ class AuthController extends Controller
                 if ($request->hasFile('multiplePhotos')) {
                     $files = $request->file('multiplePhotos');
                     foreach ($files as $file) {
-                        $pictureName = time() . '.' . $file->extension();
-                        $file->storeAs('public/image', $pictureName);
+                        $picturesName = time() . '.' . $file->extension();
+                        $file->storeAs('public/image', $picturesName);
                         image::create([
-                            'image' => $pictureName,
+                            'image' => $picturesName,
                             'artisan_id' => $artisanId,
 
                         ]);
