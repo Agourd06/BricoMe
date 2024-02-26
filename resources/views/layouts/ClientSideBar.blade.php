@@ -55,7 +55,7 @@
             </ul>
         </div>
         <div class="lg:w-[80%]  mt-20  lg:ml-auto">
-
+            
             @yield('artisans')
             @yield('Reserve')
         </div>

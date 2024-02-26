@@ -37,6 +37,11 @@
                     <h2
                         class="mb-14 font-bold text-4xl text-[#F9B100] before:block before:absolute before:bg-sky-300 before:content[''] relative before:w-20 before:h-1 before:-skew-y-3 before:-bottom-4 text-center">
                         SIGN UP</h2>
+                        <div class="text-red-500 text-[20px] w-full text-center">
+                            @if ($errors->any())
+                                <div>{{ $errors->first() }}</div>
+                            @endif
+                        </div>
                     <form action="/register" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="grid gap-6 mb-6 grid-cols-2">
