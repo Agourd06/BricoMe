@@ -74,3 +74,10 @@ Route::middleware(['auth', 'role:Admin'])->group(function () {
     Route::get('/admin', [adminController::class, 'adminPage']);
     Route::get('/adminUsers', [adminController::class, 'UsersAdmin']);
 });
+
+
+// --------------------- Reservation ---------------------
+Route::get('Reservation', function (){
+    return view('client.Reservation');
+});
+
