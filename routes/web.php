@@ -77,3 +77,8 @@ Route::get('/adminUsers', function () {
     return view('Admin.Users');
 });
 });
+
+// --------------------- Reservation ---------------------
+Route::get('Reservation', function (){
+    return view('client.Reservation');
+});
