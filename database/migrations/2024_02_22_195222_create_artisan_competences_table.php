@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('artisan_competences', function (Blueprint $table) {
             $table->id();
+            $table->string('tarif')->nullable();
             $table->foreignId('artisan_id')->constrained('artisans')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('competence')->constrained('competences')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
