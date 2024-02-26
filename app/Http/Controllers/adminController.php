@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Competence;
 use App\Models\job;
+use App\Models\Client;
+use App\Models\Artisan;
+use App\Models\Competence;
 use Illuminate\Http\Request;
 
 class adminController extends Controller
@@ -34,8 +36,18 @@ class adminController extends Controller
     {
         $jobId = $request->input('job_id');
         $competence_id = $request->input('competenceId');
+
+
         // ----------Count jobs-----------------
         $jobCount = job::count();
+
+
+        // ----------Count jobs-----------------
+        $Artisans = Artisan::count();
+
+
+        // ----------Count jobs-----------------
+        $Clients = Client::count();
 
 
         // ----------Count Competences-----------------
@@ -57,8 +69,20 @@ class adminController extends Controller
             'competences' => $competences,
             'jobCount' => $jobCount,
             'editeJob' => $editeJob,
+
             'editeCompetence' => $editeCompetence,
             'competenceCount' => $competenceCount,
+        ]);
+    }
+    public function UsersAdmin()
+    {
+        // ----------------userAdmin data----------------
+        $artisans = Artisan::with('artisanJobs', 'user' )->get();
+        
+        $Clients = Client::with('user')->get();
+        return view('Admin.Users', [
+            'artisans' => $artisans,
+            'clients' => $Clients,
         ]);
     }
     public function archive(Request $request)

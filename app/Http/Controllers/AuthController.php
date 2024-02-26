@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Competence;
+use App\Models\Admin;
 use App\Models\job;
 use App\Models\User;
-use App\Models\Admin;
 use App\Models\image;
 use App\Models\Client;
 use App\Models\Artisan;
+use App\Models\Competence;
+use App\Models\artisanJobs;
 use Illuminate\Http\Request;
 use App\Models\artisanCompetence;
 use Illuminate\Support\Facades\Hash;
@@ -21,6 +22,9 @@ class AuthController extends Controller
     {
 
         try {
+
+            //--------------------- User Validation----------------------
+
             $userData = $request->validate(
                 [
                     'lname' => 'required',
@@ -31,7 +35,7 @@ class AuthController extends Controller
                     'cpassword' => ['required', 'min:6', 'max:16'],
                     'Phone' => 'required',
                     'city' => 'required',
-                    'Profil' => ['required', 'image'],
+                    'Profil' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:2048'],
                     'role' => '',
                 ],
 
@@ -43,10 +47,10 @@ class AuthController extends Controller
                     'email.required' => 'The email field is required.',
                     'city.required' => 'The city field is required.',
                     'Phone.required' => 'The Phone field is required.',
-                    'password.min' => 'The password must have more than 3 characters.',
+                    'password.min' => 'The password must have more than 6 characters.',
                     'password.max' => 'The password must have less than 16 characters.',
                     'password.required' => 'The password is required.',
-                    'cpassword.min' => 'The password must have more than 3 characters.',
+                    'cpassword.min' => 'The password must have more than 6 characters.',
                     'cpassword.max' => 'The password must have less than 16 characters.',
                     'cpassword.required' => 'The password is required.',
                     'Profil.required' => 'The image is required.',
@@ -57,18 +61,26 @@ class AuthController extends Controller
             );
 
             if ($userData['role'] == 'artisan') {
+
+                //--------------------- Artisan Validation----------------------
+
+
                 $artisanData = $request->validate([
                     'description' => 'required',
-                    'job' => 'required',
+                    'job_id' => 'required',
                     'skills' => 'required|array',
-                    'multiplePhotos.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                    'multiplePhotos.*' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:2048'],
                 ], [
                     'description.required' => 'Description is empty! Please fill it out.',
-                    'job.required' => 'Job is empty! Please fill it out.',
+                    'job_id.required' => 'Job is empty! Please fill it out.',
                     'skills.required' => 'Skills is empty! Please fill it out.',
                     'multiplePhotos.*' => 'Incorrect Data. Please try again.',
                 ]);
             } elseif ($userData['role'] === 'client') {
+
+                //--------------------- Cliens Validation----------------------
+
+
                 $clientData = $request->validate(
                     [
                         'description' => 'required',
@@ -81,51 +93,80 @@ class AuthController extends Controller
                 );
             }
 
+            //--------------------- User Profil Data Validation----------------------
 
-
+            if ($request->hasFile('Profil')) {
+                $file = $request->file('Profil');
+                $pictureName = time() . '.' . $file->extension();
+                $file->storeAs('public/image', $pictureName);
+                $userData['Profil'] = $pictureName;
+            }
+            //--------------------- password hashing----------------------
 
             $userData['password'] = Hash::make($userData['password']);
+
+            //--------------------- Insert User----------------------
+
             $user = User::create($userData);
 
             if ($userData['role'] == 'artisan') {
+            //--------------------- Insert Artisan----------------------
 
                 $artisan = Artisan::create([
                     'user_id' => $user->id,
                     'description' => $artisanData['description'],
-                    'job' => $artisanData['job'],
                 ]);
                 $artisanId =  $artisan->id;
+
+             //--------------------- Insert Images for artisan----------------------
+
                 if ($request->hasFile('multiplePhotos')) {
                     $files = $request->file('multiplePhotos');
                     foreach ($files as $file) {
-                        $pictureName = time() . '.' . $file->extension();
-                        $file->storeAs('public/image', $pictureName);
-                        $images = image::create([
-                            'image' => $pictureName,
+                        $picturesName = time() . '.' . $file->extension();
+                        $file->storeAs('public/image', $picturesName);
+                        image::create([
+                            'image' => $picturesName,
                             'artisan_id' => $artisanId,
 
                         ]);
                     }
                 }
+                
+                 //--------------------- Insert Jobs for artisan----------------------
 
                 foreach ($artisanData['skills'] as $skill) {
                     artisanCompetence::create([
                         'artisan_id' => $artisanId,
                         'competence' => $skill,
+
                     ]);
                 }
+                
+                //--------------------- Insert skills for artisan----------------------
+
+                    artisanJobs::create([
+                        'artisan_id' => $artisanId,
+                        'job_id' => $artisanData['job_id'],
+
+                    ]);
+                
                 auth()->login($user);
 
                 return redirect('/Artisan');
-            } elseif ($userData['role'] == 'client') {
 
-                Admin::create([
+
+            } elseif ($userData['role'] == 'client') {
+             //--------------------- Insert Clients----------------------
+
+                Client::create([
                     'user_id' => $user->id,
+                    'description' => $clientData['description'],
 
                 ]);
                 auth()->login($user);
 
-                return redirect('/admin');
+                return redirect('/Client');
             }
 
             // return view('artisan.artisan');

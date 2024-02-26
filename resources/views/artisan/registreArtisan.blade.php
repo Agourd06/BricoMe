@@ -51,9 +51,11 @@
                         <h2
                             class="mb-14 font-bold text-4xl text-blue-900 before:block before:absolute before:bg-sky-300 before:content[''] relative before:w-20 before:h-1 before:-skew-y-3 before:-bottom-4 text-center">
                             SIGN UP</h2>
-                        @if ($errors->any())
-                            <div>{{ $errors->first() }}</div>
-                        @endif
+                            <div class="text-red-500 text-[20px] w-full text-center">
+                                @if ($errors->any())
+                                    <div>{{ $errors->first() }}</div>
+                                @endif
+                            </div>
                         <div class="grid gap-6 mb-6 grid-cols-2">
                             <div class="flex flex-col">
                                 <input type="text" class="py-4 bg-white rounded-full px-6 placeholder:text-xs"
@@ -67,32 +69,24 @@
                         <div class="flex flex-col">
                             <input type="text" class="py-4 bg-white rounded-full px-6 placeholder:text-xs mb-4"
                                 placeholder="Votre email" name="email"></input>
-                                @error('email')
-                                <p class="text-red-500 text-sm">{{ $message }}</p>
-                            @enderror
+                            
                         </div>
                         <div class="grid gap-6 mb-6 grid-cols-2">
                             <div class="flex flex-col">
                                 <input class="py-4 bg-white rounded-full px-6 placeholder:text-xs" type="password"
                                     placeholder="Password" name="password"></input>
-                                    @error('password')
-                                    <p class="text-red-500 text-sm">{{ $message }}</p>
-                                @enderror
+                                
                             </div>
                             <div class="flex flex-col">
                                 <input class="py-4 bg-white rounded-full px-6 placeholder:text-xs" type="password"
                                     placeholder="Confirmer Password" name="cpassword"></input>
-                                    @error('cpassword')
-                                    <p class="text-red-500 text-sm">{{ $message }}</p>
-                                @enderror
+                               
                             </div>
                         </div>
                         <div class="flex flex-col">
                             <label for="phone" class="text-blue-900 font-bold mb-2 text-center">Phone</label>
                             <input type="tel" class="py-4 bg-white rounded-full px-6 placeholder:text-xs" placeholder="phone" name="Phone">
-                            @error('Phone')
-                                <p class="text-red-500 text-sm">{{ $message }}</p>
-                            @enderror
+                          
                         </div>
                         <div class="flex flex-col">
                             <input type="date" class="py-4 bg-white rounded-full px-6 placeholder:text-xs"
@@ -122,14 +116,12 @@
                                 votre photo de profile</label>
                             <input type="file" id="profile-image" name="Profil" 
                                 class="py-4 mb-2 bg-white rounded-full px-6 placeholder:text-xs">
-                                @error('Profil')
-                                <p class="text-red-500 text-sm">{{ $message }}</p>
-                            @enderror
+                          
                         </div>
                         <!-- Job Input -->
                         <div class="flex flex-col">
                             <label for="job" class="text-blue-900 font-bold mb-2 text-center">Métier</label>
-                            <select id="job" name="job" class="py-4 bg-white rounded-full px-6">
+                            <select id="job" name="job_id" class="py-4 bg-white rounded-full px-6">
                                 <option value="" disabled selected>Select Your Job</option>
                                 @foreach ($jobs as $job)
                                     <option value="{{ $job->id }}">{{ $job->name }}</option>

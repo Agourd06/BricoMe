@@ -34,11 +34,10 @@ Route::get('/admin', function () {
 
 
 Route::middleware(['auth', 'role:Client'])->group(function () {
-    Route::get('/Client', function () {
-        return view('client.Client');
-    });
-    
-    });
+    Route::get('/Client', [ClientController::class , 'clientArtisans']);
+    Route::post('/Reserve', [ClientController::class , 'Reserve']);
+
+});
 //----------------------------------------------- Artisan---------------------------------
 
 
@@ -46,7 +45,7 @@ Route::middleware(['auth', 'role:Artisan'])->group(function () {
     Route::get('/Artisan', function () {
         return view('artisan.Artisan');
     });
-    });
+});
 // ---------------------------------------Authentication----------------------------------
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [loginController::class, 'login']);
@@ -65,20 +64,20 @@ Route::get('/RegisterClient', function () {
 // --------------------------------------------Admin----------------------------
 Route::middleware(['auth', 'role:Admin'])->group(function () {
 
-Route::post('/NewJob' , [adminController::class , 'NewJob']);
-Route::post('/updateJob' , [adminController::class , 'updateJob']);
-Route::post('/NewComeptences' , [adminController::class , 'NewComeptences']);
-Route::post('/updateComeptences' , [adminController::class , 'updateCompetence']);
-Route::post('/archive' , [adminController::class , 'archive']);
-Route::post('/editData' , [adminController::class , 'adminPage']);
-Route::post('/editcom' , [adminController::class , 'adminPage']);
-Route::get('/admin' , [adminController::class , 'adminPage']);
-Route::get('/adminUsers', function () {
-    return view('Admin.Users');
+    Route::post('/NewJob', [adminController::class, 'NewJob']);
+    Route::post('/updateJob', [adminController::class, 'updateJob']);
+    Route::post('/NewComeptences', [adminController::class, 'NewComeptences']);
+    Route::post('/updateComeptences', [adminController::class, 'updateCompetence']);
+    Route::post('/archive', [adminController::class, 'archive']);
+    Route::post('/editData', [adminController::class, 'adminPage']);
+    Route::post('/editcom', [adminController::class, 'adminPage']);
+    Route::get('/admin', [adminController::class, 'adminPage']);
+    Route::get('/adminUsers', [adminController::class, 'UsersAdmin']);
 });
-});
+
 
 // --------------------- Reservation ---------------------
 Route::get('Reservation', function (){
     return view('client.Reservation');
 });
+

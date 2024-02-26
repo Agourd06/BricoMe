@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('artisan_competences', function (Blueprint $table) {
+        Schema::create('artisan_jobs', function (Blueprint $table) {
             $table->id();
-            $table->string('tarif')->nullable();
             $table->foreignId('artisan_id')->constrained('artisans')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId('competence')->constrained('competences')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('job_id')->constrained('jobs')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }
@@ -25,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('artisan_competences');
+        Schema::dropIfExists('artisan_jobs');
     }
 };
