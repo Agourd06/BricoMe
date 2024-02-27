@@ -35,8 +35,10 @@ Route::get('/admin', function () {
 
 
 Route::middleware(['auth', 'role:Client'])->group(function () {
-    Route::get('/Client', function () {
-        return view('client.Client');
+    Route::get('/Client', [ClientController::class , 'clientArtisans']);
+    Route::post('/Reserve', [ClientController::class , 'Reserve']);
+    Route::get('/Reservation', function (){
+        return view('client.Reservation');
     });
 });
 
@@ -83,3 +85,8 @@ Route::middleware(['auth', 'role:Admin'])->group(function () {
     Route::get('/admin', [adminController::class, 'adminPage']);
     Route::get('/adminUsers', [adminController::class, 'UsersAdmin']);
 });
+
+
+// --------------------- Reservation ---------------------
+
+

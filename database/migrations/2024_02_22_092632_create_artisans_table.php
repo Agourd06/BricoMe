@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('description');
-            $table->foreignId('job_id')->constrained('jobs')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->string('tarif')->nullable();
+            $table->enum('availablity' ,['Available','Reserved'])->default('Available');
+            $table->string('Avg')->nullable();
             $table->timestamps();
         });
         

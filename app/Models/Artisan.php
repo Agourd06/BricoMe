@@ -13,23 +13,34 @@ class Artisan extends Model
     protected $fillable = [
         'user_id',
         'description',
-        'job_id',
         'tarif',
         'skills',
         'multiplePhotos',
     ];
 
-    public function job()
+    public function artisanJobs()
     {
-        return $this->belongsTo(job::class, 'job_id');
+        return $this->hasMany(artisanJobs::class);
+    }
+
+    public function jobs()
+    {
+        return $this->belongsToMany(job::class, 'artisan_jobs');
     }
     public function images()
     {
         return $this->hasMany(Image::class);
     }
 
-    public function artisancompetences()
+    public function artisanCompetence()
     {
         return $this->hasMany(artisanCompetence::class);
     }
+
+    public function competences()
+    {
+        return $this->belongsToMany(Competence::class, 'artisan_competences', 'artisan_id', 'competence')->withPivot('tarif');
+    }
+
+
 }

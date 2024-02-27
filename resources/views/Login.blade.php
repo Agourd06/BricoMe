@@ -7,17 +7,23 @@
                     <img class="rounded-md shadow-2xl h-full" src="https://www.salon-maison-bois.com/wp-content/uploads/2021/11/homme-dans-son-atelier-de-bricolage-1165x675.jpg" alt="">
                 </div>
                 <form action="/login" method="POST" class="bg-white rounded-xl px-6 py-8 space-y-6 max-w-md md:ml-auto max-md:mx-auto w-full">
-                   @csrf
+                  
                     <h3 class="text-3xl font-extrabold mb-12 max-md:text-center">
                         Sign in
                     </h3>
+                    <div class="text-red-500 text-[20px] w-full text-center">
+                        @if ($errors->any())
+                            <div>{{ $errors->first() }}</div>
+                        @endif
+                    </div>
+                    @csrf
                     <div>
-                        <input name="email" type="email" autocomplete="email" required
+                        <input name="email" type="email" autocomplete="email" 
                             class="bg-gray-100 w-full text-sm px-4 py-3.5 rounded-md outline-[#333]"
                             placeholder="Email address" />
                     </div>
                     <div>
-                        <input name="password" type="password" autocomplete="current-password" required
+                        <input name="password" type="password" autocomplete="current-password" 
                             class="bg-gray-100 w-full text-sm px-4 py-3.5 rounded-md outline-[#333]"
                             placeholder="Password" />
                     </div>
