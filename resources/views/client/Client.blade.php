@@ -124,7 +124,7 @@
                                     @endforeach
                                 </h3>
                                 <span class="text-sm block text-gray-400 mt-2"> {{ $artisan->user->lname }}
-                                    {{ $artisan->user->fname }} | {{ $artisan->availablity }}</span>
+                                    {{ $artisan->user->fname }} </span>
                                 <div class="flex flex-col">
                                     @foreach ($artisan->competences as $artisanCompetence)
                                         <p class="text-sm mt-4">

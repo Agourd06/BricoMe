@@ -36,7 +36,9 @@ Route::get('/admin', function () {
 Route::middleware(['auth', 'role:Client'])->group(function () {
     Route::get('/Client', [ClientController::class , 'clientArtisans']);
     Route::post('/Reserve', [ClientController::class , 'Reserve']);
-
+    Route::get('/Reservation', function (){
+        return view('client.Reservation');
+    });
 });
 //----------------------------------------------- Artisan---------------------------------
 
@@ -77,7 +79,5 @@ Route::middleware(['auth', 'role:Admin'])->group(function () {
 
 
 // --------------------- Reservation ---------------------
-Route::get('Reservation', function (){
-    return view('client.Reservation');
-});
+
 

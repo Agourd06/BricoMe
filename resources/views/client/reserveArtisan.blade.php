@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
     <title>Document</title>
 </head>
@@ -26,7 +27,8 @@
                                 Artisan First Name :
                             </label>
                             <div class="mb-5">
-                                <input type="text" name="" id="area" value="{{$ArtisanData ? $ArtisanData->user->fname : ''}}" readonly
+                                <input type="text" name="" id="area"
+                                    value="{{ $ArtisanData ? $ArtisanData->user->fname : '' }}" readonly
                                     class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
                             </div>
                         </div>
@@ -35,7 +37,8 @@
                                 Artisan Last Name :
                             </label>
                             <div class="mb-5">
-                                <input type="text" id="city" value="{{$ArtisanData ? $ArtisanData->user->lname : ''}}" readonly
+                                <input type="text" id="city"
+                                    value="{{ $ArtisanData ? $ArtisanData->user->lname : '' }}" readonly
                                     class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
                             </div>
                         </div>
@@ -56,10 +59,10 @@
                             </label>
                             <div class="mb-5">
                                 <select type="text" name="Job" id="area"
-                                    class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" >
+                                    class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
                                     @foreach ($ArtisanData->artisanJobs as $artisanJob)
-                                  <option value="{{ $artisanJob->job->id }}">{{ $artisanJob->job->name }}</option>  
-                                @endforeach
+                                        <option value="{{ $artisanJob->job->id }}" >{{ $artisanJob->job->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -69,13 +72,15 @@
                             </label>
                             <div class="mb-5">
                                 <select type="text" name="Skill" id="skill"
-                                    class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" >
+                                    class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
                                     @foreach ($ArtisanData->competences as $artisanCompetence)
-                                    <option class="text-sm mt-4" value="{{ $artisanCompetence->id }}">
+                                    <option class="text-sm mt-4" value="{{ $artisanCompetence->id }}" data-tarif="{{ $artisanCompetence->pivot->tarif }}">
                                         {{ $artisanCompetence->name }}
                                     </option>
                                 @endforeach
+                                
                                 </select>
+
                             </div>
                         </div>
                     </div>
@@ -96,7 +101,8 @@
                                 City :
                             </label>
                             <div class="mb-5">
-                                <input type="text" name="City" id="area" value="{{$ArtisanData ? $ArtisanData->user->city : ''}}" readonly
+                                <input type="text" name="City" id="area"
+                                    value="{{ $ArtisanData ? $ArtisanData->user->city : '' }}" readonly
                                     class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
                             </div>
                         </div>
@@ -105,15 +111,11 @@
                                 Price :
                             </label>
                             <div class="mb-5">
-                                <select type="text" name="price" id="price" 
-                                class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" >
-                                @foreach ($ArtisanData->competences as $artisanCompetence)
-                                <option class="text-sm mt-4" value="{{ $artisanCompetence->id }}" data-job="{{ $artisanCompetence->tarif }}">
-                                      {{ $artisanCompetence->pivot->tarif  }} 
-                                </option>
-                            @endforeach
-                            </select>
+                               
+                                <input type="text" name="price" id="price" readonly
+                                    class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
                             </div>
+                            
                         </div>
                     </div>
 
@@ -128,27 +130,23 @@
         </div>
     @endsection
     <script>
-        $(document).ready(function () {
-            var skillsDropdown = $('#skill');
-            var priceDropdown = $('#price');
-    
-            $('#job').change(function () {
-                var selectedJobId = $(this).val();
-    
-                skillsDropdown.find('option').hide().filter('[data-job="' + selectedJobId + '"], [value=""]').show();
-                skillsDropdown.val(selectedJobId === '' ? null : selectedJobId).trigger('change');
-            });
-    
-            skillsDropdown.change(function () {
-                var selectedSkillId = $(this).val();
-                var selectedSkillPrice = $(this).find('option:selected').data('job');
-                
-                priceDropdown.val(selectedSkillPrice);
-            });
-        });
+   $(document).ready(function () {
+    var skillsDropdown = $('#skill');
+    var priceInput = $('#price');
+
+    skillsDropdown.change(function () {
+        var selectedSkillPrice = $(this).find(':selected').data('tarif');
+        priceInput.val(selectedSkillPrice);
+    });
+});
+
     </script>
     
-    
+
+
+
+
+
 </body>
 
 </html>

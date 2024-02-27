@@ -58,6 +58,7 @@
 
             @yield('artisans')
             @yield('Reserve')
+            @yield('Reservation')
         </div>
 
     </div>
