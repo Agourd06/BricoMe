@@ -35,6 +35,7 @@ Route::get('/admin', function () {
 
 
 Route::middleware(['auth', 'role:Client'])->group(function () {
+    
     Route::get('/Client', [ClientController::class , 'clientArtisans']);
     Route::match(['get', 'post'], '/Reserve', [ClientController::class, 'Reserve']);
     Route::match(['get', 'post'], '/confirm', [ClientController::class, 'confirmReservation'])->name('confirmReservation');
@@ -61,7 +62,7 @@ Route::middleware(['auth', 'role:Artisan'])->group(function () {
 });
 // ---------------------------------------Authentication----------------------------------
 Route::post('/register', [AuthController::class, 'register']);
-// Route::post('/login', [loginController::class, 'login'])->middleware(RedirectIfAuthenticated::class);;
+Route::post('/login', [loginController::class, 'login']);
 Route::get('/logout', [loginController::class, 'logout']);
 Route::get('/ArtisanRegister', [AuthController::class, 'ArtisanRegisterData'])->middleware(RedirectIfAuthenticated::class);
 Route::get('/RegisterClient', function () {
