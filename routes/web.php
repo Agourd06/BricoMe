@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\adminController;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\RapportController;
 use App\Http\Middleware\RedirectIfAuthenticated;
 
 /*
@@ -40,6 +41,14 @@ Route::middleware(['auth', 'role:Client'])->group(function () {
         return view('client.Reservation');
     });
 });
+
+
+
+Route::post('/repport',[RapportController::class,'store']);
+Route::get('/reporting', function () {
+    return view('client.repport');
+});
+
 //----------------------------------------------- Artisan---------------------------------
 
 
