@@ -24,9 +24,9 @@ class User extends Authenticatable
         'email' ,
         'password' ,
         'birthDay' ,
-        'telephone' ,
+        'Phone' ,
         'city' ,
-        'profile-image' ,
+        'Profil' ,
        
 
     ];
@@ -50,7 +50,34 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-    public function clients(){
-        return $this->hasMany(Client::class);
+    public function Artisan()
+    {
+        return $this->hasOne(Artisan::class);
+    }
+
+    public function Client()
+    {
+        return $this->hasOne(Client::class);
+    }
+
+    public function Admin()
+    {
+        return $this->hasOne(Admin::class);
+    }
+
+    public function isAdmin()
+    {
+        return $this->Admin !== null;
+    }
+    
+
+    public function isArtisan()
+    {
+        return $this->Artisan !== null;
+    }
+
+    public function isClient()
+    {
+        return $this->Client !== null;
     }
 }
