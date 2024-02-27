@@ -18,7 +18,7 @@ class ContactUs extends Mailable
      */
     public function __construct()
     {
-        //
+        
     }
 
     /**
@@ -27,7 +27,7 @@ class ContactUs extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Contact Us',
+            subject: 'Contact Us ',
         );
     }
 
