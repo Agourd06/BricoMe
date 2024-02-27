@@ -35,10 +35,12 @@ Route::get('/admin', function () {
 
 Route::middleware(['auth', 'role:Client'])->group(function () {
     Route::get('/Client', [ClientController::class , 'clientArtisans']);
-    Route::post('/Reserve', [ClientController::class , 'Reserve']);
+    Route::match(['get', 'post'], '/Reserve', [ClientController::class, 'Reserve']);
+    Route::match(['get', 'post'], '/confirm', [ClientController::class, 'confirmReservation'])->name('confirmReservation');
+
     Route::get('/Reservation', function (){
         return view('client.Reservation');
-    });
+    })->name('Reservation');
 });
 //----------------------------------------------- Artisan---------------------------------
 
@@ -50,7 +52,7 @@ Route::middleware(['auth', 'role:Artisan'])->group(function () {
 });
 // ---------------------------------------Authentication----------------------------------
 Route::post('/register', [AuthController::class, 'register']);
-Route::post('/login', [loginController::class, 'login']);
+// Route::post('/login', [loginController::class, 'login'])->middleware(RedirectIfAuthenticated::class);;
 Route::get('/logout', [loginController::class, 'logout']);
 Route::get('/ArtisanRegister', [AuthController::class, 'ArtisanRegisterData'])->middleware(RedirectIfAuthenticated::class);
 Route::get('/RegisterClient', function () {
