@@ -24,7 +24,7 @@
                 @csrf
 
                     <div class="-mx-3 grid grid-cols-2">
-                        <input type="hidden" name="artisan_id" value="{{ $ArtisanData ? $ArtisanData->user->id : '' }}">
+                        <input type="hidden" name="artisan_id" value="{{ $ArtisanData ? $ArtisanData->id : '' }}">
                         <div class="w-full px-3 ">
                             <label for="name" class="mb-3 block text-base font-medium text-[#07074D]">
                                 Artisan First Name :
