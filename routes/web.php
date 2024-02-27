@@ -35,11 +35,14 @@ Route::get('/admin', function () {
 
 
 Route::middleware(['auth', 'role:Client'])->group(function () {
+    
     Route::get('/Client', [ClientController::class , 'clientArtisans']);
-    Route::post('/Reserve', [ClientController::class , 'Reserve']);
+    Route::match(['get', 'post'], '/Reserve', [ClientController::class, 'Reserve']);
+    Route::match(['get', 'post'], '/confirm', [ClientController::class, 'confirmReservation'])->name('confirmReservation');
+
     Route::get('/Reservation', function (){
         return view('client.Reservation');
-    });
+    })->name('Reservation');
 });
 
 

@@ -7,8 +7,11 @@ use App\Models\User;
 use App\Models\Client;
 use App\Models\Artisan;
 use App\Models\Competence;
+use App\Models\reservation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Redirect;
 
 class ClientController extends Controller
 {
@@ -66,5 +69,35 @@ class ClientController extends Controller
         return view('client.reserveArtisan', [
             'ArtisanData' => $ArtisanData,
         ]);
+    }
+    public function confirmReservation(Request $request)
+    {
+        $reservationData =  $request->validate([
+            'fname' => 'required',
+            'lname' => 'required',
+            'adress' => 'required',
+            'job' => 'required',
+            'skill' => 'required',
+            'date' => 'required',
+            'city' => 'required',
+            'price' => 'required',
+            'artisan_id' => '',
+        ]);
+        $reservationData['client_id'] = Auth::id();
+        $clientId = client::where('user_id' , $reservationData['client_id'])->value('id');
+       
+         reservation::create([
+            'artisanName' => $reservationData['fname'] . ' ' . $reservationData['lname'],
+            'adress' => $reservationData['adress'],
+            'job' => $reservationData['job'],
+            'skill' => $reservationData['skill'],
+            'date' => $reservationData['date'],
+            'city' => $reservationData['city'],
+            'price' => $reservationData['price'],
+            'client_id' => $clientId,
+            'artisan_id' => $reservationData['artisan_id'],
+        ]);
+       
+        return Redirect::route('Reservation');
     }
 }
