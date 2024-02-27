@@ -18,6 +18,15 @@ class reservation extends Model
     'price' ,
     'client_id' ,
     'artisan_id' ,
-         
   ];
+
+    public function artisan()
+    {
+        return $this->belongsTo(Artisan::class);
+    }
+
+    public function job()
+    {
+        return $this->belongsTo(Job::class);
+    }
 }

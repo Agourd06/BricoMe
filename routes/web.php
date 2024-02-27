@@ -39,9 +39,7 @@ Route::middleware(['auth', 'role:Client'])->group(function () {
     Route::match(['get', 'post'], '/Reserve', [ClientController::class, 'Reserve']);
     Route::match(['get', 'post'], '/confirm', [ClientController::class, 'confirmReservation'])->name('confirmReservation');
 
-    Route::get('/Reservation', function (){
-        return view('client.Reservation');
-    })->name('Reservation');
+    Route::get('/Reservation', [ClientController::class, 'showReservation'] )->name('Reservation');
 });
 
 

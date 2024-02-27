@@ -85,7 +85,7 @@ class ClientController extends Controller
         ]);
         $reservationData['client_id'] = Auth::id();
         $clientId = client::where('user_id' , $reservationData['client_id'])->value('id');
-       
+
          reservation::create([
             'artisanName' => $reservationData['fname'] . ' ' . $reservationData['lname'],
             'adress' => $reservationData['adress'],
@@ -97,7 +97,15 @@ class ClientController extends Controller
             'client_id' => $clientId,
             'artisan_id' => $reservationData['artisan_id'],
         ]);
-       
+
         return Redirect::route('Reservation');
+    }
+
+    public function showReservation()
+    {
+        $id = Auth::user()->client->id;
+
+        $reservations = Reservation::where('client_id', '=', $id)->get();
+        return view('client.Reservation', compact('reservations'));
     }
 }
