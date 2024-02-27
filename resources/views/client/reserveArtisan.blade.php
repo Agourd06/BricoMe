@@ -17,17 +17,20 @@
 
     @section('Reserve')
         <div class="flex items-center justify-center p-12">
-            <!-- Author: FormBold Team -->
             <div class="mx-auto w-full max-w-[550px] bg-white">
-                <form>
-                    <div class="-mx-3 grid grid-cols-2">
+                <form action="{{ route('confirmReservation') }}" method="POST" id="booking">
+                    <!-- ... your form fields ... -->
+                
+                @csrf
 
+                    <div class="-mx-3 grid grid-cols-2">
+                        <input type="hidden" name="artisan_id" value="{{ $ArtisanData ? $ArtisanData->user->id : '' }}">
                         <div class="w-full px-3 ">
                             <label for="name" class="mb-3 block text-base font-medium text-[#07074D]">
                                 Artisan First Name :
                             </label>
                             <div class="mb-5">
-                                <input type="text" name="" id="area"
+                                <input type="text" name="fname" id="area"
                                     value="{{ $ArtisanData ? $ArtisanData->user->fname : '' }}" readonly
                                     class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
                             </div>
@@ -37,7 +40,7 @@
                                 Artisan Last Name :
                             </label>
                             <div class="mb-5">
-                                <input type="text" id="city"
+                                <input type="text" id="lname" name="lname"
                                     value="{{ $ArtisanData ? $ArtisanData->user->lname : '' }}" readonly
                                     class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
                             </div>
@@ -58,10 +61,10 @@
                                 Booked Job :
                             </label>
                             <div class="mb-5">
-                                <select type="text" name="Job" id="area"
+                                <select type="text" name="job" id="area"
                                     class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
                                     @foreach ($ArtisanData->artisanJobs as $artisanJob)
-                                        <option value="{{ $artisanJob->job->id }}" >{{ $artisanJob->job->name }}</option>
+                                        <option value="{{ $artisanJob->job->id }}">{{ $artisanJob->job->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -71,14 +74,15 @@
                                 Booked Skill :
                             </label>
                             <div class="mb-5">
-                                <select type="text" name="Skill" id="skill"
+                                <select type="text" name="skill" id="skill"
                                     class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
                                     @foreach ($ArtisanData->competences as $artisanCompetence)
-                                    <option class="text-sm mt-4" value="{{ $artisanCompetence->id }}" data-tarif="{{ $artisanCompetence->pivot->tarif }}">
-                                        {{ $artisanCompetence->name }}
-                                    </option>
-                                @endforeach
-                                
+                                        <option class="text-sm mt-4" value="{{ $artisanCompetence->id }}"
+                                            data-tarif="{{ $artisanCompetence->pivot->tarif }}">
+                                            {{ $artisanCompetence->name }}
+                                        </option>
+                                    @endforeach
+
                                 </select>
 
                             </div>
@@ -101,7 +105,7 @@
                                 City :
                             </label>
                             <div class="mb-5">
-                                <input type="text" name="City" id="area"
+                                <input type="text" name="city" id="area"
                                     value="{{ $ArtisanData ? $ArtisanData->user->city : '' }}" readonly
                                     class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
                             </div>
@@ -111,16 +115,16 @@
                                 Price :
                             </label>
                             <div class="mb-5">
-                               
+
                                 <input type="text" name="price" id="price" readonly
                                     class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
                             </div>
-                            
+
                         </div>
                     </div>
 
                     <div>
-                        <button
+                        <button type="submit" form="booking"
                             class="hover:shadow-form w-full rounded-md bg-[#6A64F1] py-3 px-8 text-center text-base font-semibold text-white outline-none">
                             Book Appointment
                         </button>
@@ -130,18 +134,17 @@
         </div>
     @endsection
     <script>
-   $(document).ready(function () {
-    var skillsDropdown = $('#skill');
-    var priceInput = $('#price');
+        $(document).ready(function() {
+            var skillsDropdown = $('#skill');
+            var priceInput = $('#price');
 
-    skillsDropdown.change(function () {
-        var selectedSkillPrice = $(this).find(':selected').data('tarif');
-        priceInput.val(selectedSkillPrice);
-    });
-});
-
+            skillsDropdown.change(function() {
+                var selectedSkillPrice = $(this).find(':selected').data('tarif');
+                priceInput.val(selectedSkillPrice);
+            });
+        });
     </script>
-    
+
 
 
 

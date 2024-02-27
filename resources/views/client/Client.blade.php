@@ -153,7 +153,7 @@
                                 
                                 <div class="flex gap-2 items-center justify-between mt-4">
                                   <form action="/Profile" method="Post">  <input type="hidden" value="{{$artisan->user->id}}" name="artisan_id"> <button type="submit" class="text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800">Read More</button></form>
-                                  <form action="/Reserve" method="Post"> @csrf <input type="hidden" value="{{$artisan->user->id}}" name="artisan_id"> <button type="submit" class="text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800">Resrve</button></form>
+                                  <form action="/Reserve" method="post"> @csrf <input type="hidden" value="{{$artisan->user->id}}" name="artisan_id"> <button type="submit" class="text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800">Resrve</button></form>
 
                                     
                                     </div>
