@@ -25,7 +25,7 @@
                   // Automatically hide the success message after 5 seconds
                   setTimeout(function() {
                       document.getElementById('success-message').style.display = 'none';
-                  }, 2500);
+                  }, 2000);
               </script>
           @endif
                 <div class="absolute inset-x-0 top-[-5rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]"
