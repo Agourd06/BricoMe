@@ -64,6 +64,7 @@
                             </div>
                         </div>
                         @php
+
                             $createdAt = $reservation->date;
                             $currentTime = Carbon::now();
                             $differenceInHours = $currentTime->diffInHours($createdAt);
@@ -76,12 +77,14 @@
                               </button>
                           </div>
                       @elseif ($differenceInHours === 0)
+
                           <div class="flex justify-between items-center bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded relative" >
                               <div>
                                   <h1 class="font-bold">Thank You for Reviewing!</h1>
                               </div>
                               <div class="flex items-center">
                                   <button onclick="toggleModal('rating')" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2">
+
                                       Review
                                   </button>
                               </div>
