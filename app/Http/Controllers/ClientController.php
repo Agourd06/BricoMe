@@ -104,6 +104,8 @@ class ClientController extends Controller
 
     public function showResesvaitons()
     {
-//        dd(Auth::user()->client->id);
+        $reservations = Reservation::where('client_id', '=', Auth::user()->client->id)->get();
+
+        return view('client.Reservation', compact('reservations'));
     }
 }
