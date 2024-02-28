@@ -30,6 +30,7 @@ Route::get('/', function () {
 Route::get('/admin', function () {
     return view('admin.dashboard');
 });
+
 //----------------------------------------------- Client---------------------------------
 
 
@@ -37,13 +38,12 @@ Route::get('/admin', function () {
 Route::middleware(['auth', 'role:Client'])->group(function () {
 
 
+    Route::get('/Reservation',[ClientController::class, 'showResesvaitons']);
     Route::get('/Client', [ClientController::class, 'clientArtisans']);
     Route::match(['get', 'post'], '/Reserve', [ClientController::class, 'Reserve']);
     Route::match(['get', 'post'], '/confirm', [ClientController::class, 'confirmReservation'])->name('confirmReservation');
     Route::post('/repport', [RapportController::class, 'store']);
     Route::get('/reporting', [RapportController::class, 'reporterData']);
-   
-    Route::get('/Reservation',[ClientController::class, 'showResesvaitons'])->name('Reservation');
 
 });
 

@@ -63,7 +63,7 @@
                 @yield('content')
                 @yield('Reservation')
                 <footer
-                    class="border border-white bg-gray-100 shadow-inner py-12 px-8 relative bottom-0 left-0 right-0 w-full font-[sans-serif] mt-10">
+                    class="border border-white bg-gray-100 shadow-inner py-12 px-8 relative bottom-0 left-0 right-0  w-full font-[sans-serif] mt-10">
                     <div class="md:flex md:items-center ">
                         <div class="md:w-76 max-md:text-center">
                             <a href='javascript:void(0)' class="max-md:mx-auto"><img
@@ -105,11 +105,4 @@
                 </footer>
             </div>
 
-<<<<<<< HEAD
-=======
-            @yield('artisans')
-            @yield('content')
-            @yield('Reserve')
-            @yield('Reservation')
->>>>>>> da60df788c8f144fb9301ff92cc232c3e82aeccd
         </div>
