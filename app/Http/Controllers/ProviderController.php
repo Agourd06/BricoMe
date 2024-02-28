@@ -34,7 +34,6 @@ class ProviderController extends Controller
             ]);
 
             if ($user) {
-                $user->notify(new AccountCreation($user['name'], $user['email']));
                 event(new Registered($user));
                 auth()->login($user);
                 session()->regenerate();

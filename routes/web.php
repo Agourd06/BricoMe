@@ -59,14 +59,15 @@ Route::middleware(['auth', 'role:Client'])->group(function () {
 
 //----------------------------------------------- Artisan---------------------------------
 
-Route::match(['get', 'post'], '/artisanRegistration', [ArtisanController::class, 'registration'])->name('login');
 
 // Application Providers
 Route::get('/auth/github/redirect', [ProviderController::class, 'redirect']);
 Route::get('/auth/github/callback', [ProviderController::class, 'callback']);
 
 // Artisan Account
-Route::middleware(['auth', 'access:artisan'])->group(function () {
+Route::match(['get', 'post'], '/artisanRegistration', [ArtisanController::class, 'registration'])->name('login');
+Route::middleware(['auth', 'role:artisan'])->group(function () {
+
     Route::get('/verify', [ArtisanController::class, 'verify'])->name('verification.notice')->middleware('not_verified');
     Route::middleware(['verified'])->group(function () {
         Route::match(['get', 'post'], '/artisan/dashboard', [ArtisanController::class, 'dashboard']);
