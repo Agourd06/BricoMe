@@ -167,12 +167,12 @@
                                             pictures</label>
                                         <input type="file" name="multiplePhotos[]" multiple
                                             class="py-2 px-4 bg-white rounded-md border border-gray-300">
-                                        @error('multiplePhotos')
-                                            <p class="text-red-500 text-sm">{{ $message }}</p>
-                                        @enderror
+                                      
                                     </div>
                                 </div>
-                                <div class="mb-6">
+                                <div class="mb-6 mt-2 text-center">
+                                    <label class="text-blue-900  font-bold mb-2">Description
+                                        pictures</label>
                                     <textarea class="w-full rounded-2xl mt-3 placeholder:text-xs px-6 py-4 resize-none	m-t-2"
                                         placeholder="Votre description" name="description" id="" rows="3"></textarea>
                                 </div>
