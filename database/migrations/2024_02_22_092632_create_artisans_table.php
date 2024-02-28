@@ -14,12 +14,11 @@ return new class extends Migration
         Schema::create('artisans', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->string('description');
-            $table->enum('availablity' ,['Available','Reserved'])->default('Available');
+            $table->string('description')->nullable();
+            $table->enum('availablity' ,['Available','Reserved'])->default('Available')->nullable();
             $table->string('Avg')->nullable();
             $table->timestamps();
         });
-        
     }
 
     /**

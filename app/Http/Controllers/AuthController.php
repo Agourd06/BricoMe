@@ -132,7 +132,7 @@ class AuthController extends Controller
                         ]);
                     }
                 }
-                
+
                  //--------------------- Insert Jobs for artisan----------------------
 
                 foreach ($artisanData['skills'] as $skill) {
@@ -142,7 +142,7 @@ class AuthController extends Controller
 
                     ]);
                 }
-                
+
                 //--------------------- Insert skills for artisan----------------------
 
                     artisanJobs::create([
@@ -150,7 +150,7 @@ class AuthController extends Controller
                         'job_id' => $artisanData['job_id'],
 
                     ]);
-                
+
                 auth()->login($user);
 
                 return redirect('/Artisan');
