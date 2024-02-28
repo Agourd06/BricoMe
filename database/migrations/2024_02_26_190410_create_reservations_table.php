@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('artisanName');
             $table->string('adress');
-            $table->string('job');
-            $table->string('skill');
+            $table->bigInteger('job_id');
+            $table->bigInteger('competence_id');
             $table->string('date');
             $table->string('city');
             $table->string('price');

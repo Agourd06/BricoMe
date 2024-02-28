@@ -11,13 +11,13 @@ class reservation extends Model
   protected  $fillable = [
     'artisanName' ,
     'adress' ,
-    'job' ,
-    'skill' ,
+    'job_id' ,
+    'competence_id' ,
     'date' ,
     'city' ,
     'price' ,
     'client_id' ,
     'artisan_id' ,
-         
+
   ];
 }
