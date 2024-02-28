@@ -45,19 +45,19 @@
                     </div>
 
                     <div class="flex flex-col mb-2">
-                        <label class="text-gray-700 font-bold text-sm">Hourly Rate:</label>
-                        <p class="text-gray-800 font-normal">$50/hour</p>
+                        <label class="text-gray-700 font-bold text-sm">Tarif</label>
+                        <p class="text-gray-800 font-normal">{{$reservation->price}} DH</p>
                     </div>
 
                     <div class="flex justify-between mb-2">
                         <div class="flex flex-col pr-2">
                             <label class="text-gray-700 font-bold text-sm">Date of Creation:</label>
-                            <p class="text-gray-800 font-normal">February 1, 2024</p>
+                            <p class="text-gray-800 font-normal">{{$reservation->created_at}}</p>
                         </div>
 
                         <div class="flex flex-col pr-2 ml-12">
                             <label class="text-gray-700 font-bold text-sm">Date of Reservation:</label>
-                            <p class="text-gray-800 font-normal">March 1, 2024</p>
+                            <p class="text-gray-800 font-normal">{{$reservation->updated_at}}</p>
                         </div>
                     </div>
 
