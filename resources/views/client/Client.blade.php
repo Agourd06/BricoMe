@@ -10,7 +10,7 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
 
-    <title>Document</title>
+    <title>BricolMe Artisans</title>
 </head>
 
 <body>
@@ -104,7 +104,7 @@
         <div class="bg-white font-[sans-serif] p-4">
             <div class="max-w-6xl md:max-w-full mx-auto md:px-12">
                 <div class="w-full text-center ">
-                    <h2 class="text-3xl font-extrabold text-[#333]  inline-block">Artisans</h2>
+                    <h2 class="text-3xl font-extrabold text-red-600  inline-block">Artisans</h2>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-20 mt-10">
 
@@ -114,14 +114,15 @@
                             <img src="{{ asset('storage/image/' . $artisan->user->Profil) }}" alt="Blog Post 2"
                                 class="lg:w-2/5 min-h-[250px] h-full object-cover" />
                             <div class="p-6 lg:w-3/5">
-                                <h3 class="text-xl font-bold text-[#333]">
+                                <h3 class="text-xl font-bold flex text-[#333]">
                                     @foreach ($artisan->artisanJobs as $artisanJob)
-                                        {{ $artisanJob->job->name }}
+                                        {{ $artisanJob->job->name }}  .
+
                                     @endforeach
                                 </h3>
                                 <span class="text-sm block text-gray-400 mt-2"> {{ $artisan->user->lname }}
                                     {{ $artisan->user->fname }} </span>
-                                <div class="flex flex-col">
+                                <div class="flex flex-wrap gap-4">
                                     @foreach ($artisan->competences as $artisanCompetence)
                                         <p class="text-sm mt-4">
                                             {{ $artisanCompetence->name }}
