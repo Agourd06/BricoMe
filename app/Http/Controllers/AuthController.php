@@ -159,9 +159,9 @@ class AuthController extends Controller
             } elseif ($userData['role'] == 'client') {
              //--------------------- Insert Clients----------------------
 
-                Client::create([
+                Admin::create([
                     'user_id' => $user->id,
-                    'description' => $clientData['description'],
+                    // 'description' => $clientData['description'],
                 ]);
                 auth()->login($user);
 
