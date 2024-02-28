@@ -65,6 +65,7 @@
                         </div>
                         @php
 
+
                             $createdAt = $reservation->date;
                             $currentTime = Carbon::now();
                             $differenceInHours = $currentTime->diffInHours($createdAt);
@@ -89,6 +90,7 @@
                           </div>
                       @endif
                   </div>
+
                     </div>
                 @endforeach
 

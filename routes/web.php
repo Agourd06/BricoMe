@@ -36,7 +36,8 @@ Route::get('/', function () {
 Route::middleware(['auth', 'role:Client'])->group(function () {
 
 
-    Route::get('/Reservation',[ClientController::class, 'showResesvaitons']);
+    Route::get('/Reservation',[ClientController::class, 'showResesvaitons'])->name('reservation');
+    Route::get('/Reservation/{id}/delete',[ClientController::class, 'destroyReservation'])->name('reservation.destroy');
     Route::get('/Client', [ClientController::class, 'clientArtisans']);
     Route::match(['get', 'post'], '/Reserve', [ClientController::class, 'Reserve']);
     Route::match(['get', 'post'], '/confirm', [ClientController::class, 'confirmReservation'])->name('confirmReservation');
