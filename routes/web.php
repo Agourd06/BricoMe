@@ -50,6 +50,9 @@ Route::middleware(['auth', 'role:Client'])->group(function () {
     Route::post('/repport', [RapportController::class, 'store']);
     Route::get('/reporting', [RapportController::class, 'reporterData']);
 
+    Route::get('/Reservation',[ClientController::class, 'showResesvaitons'])->name('Reservation');
+
+
 });
 
 
