@@ -69,12 +69,14 @@ use Carbon\Carbon;
                         $currentTime = Carbon::now();
                         $differenceInHours = $currentTime->diffInHours($createdAt);
                     @endphp
-                    @if($differenceInHours < 1)
+                    @if($differenceInHours < 10)
                     <div class="flex justify-center">
-                        <button
-                            class="mt-4 bg-red-600 text-white px-3 py-1 rounded hover:bg-red-800 focus:outline-none focus:shadow-outline-red active:bg-red-800">
-                            Cancel Reservation
-                        </button>
+                        <a href="{{route('reservation.destroy', $reservation->id)}}">
+                            <button
+                                class="mt-4 bg-red-600 text-white px-3 py-1 rounded hover:bg-red-800 focus:outline-none focus:shadow-outline-red active:bg-red-800">
+                                Cancel Reservation
+                            </button>
+                        </a>
                     </div>
 
                     @endif

@@ -65,7 +65,7 @@ class ClientController extends Controller
         $ArtisanData = Artisan::with('artisanJobs', 'user', 'artisanCompetence')
             ->where('user_id', $artisan_id)
             ->firstOrFail();
-        
+
         return view('client.reserveArtisan', [
             'ArtisanData' => $ArtisanData,
         ]);
@@ -107,12 +107,19 @@ class ClientController extends Controller
         $userId = Auth::id();
 
         $clientId = client::where('user_id' , $userId)->value('id');
-    
+
         $reservations = reservation::where('client_id', $clientId)->get();
-    
+
         return view('client.Reservation', [
             'reservations' => $reservations,
         ]);
     }
-    
+
+    public function destroyReservation($id)
+    {
+        reservation::destroy($id);
+        return to_route('reservation');
+
+    }
+
 }
