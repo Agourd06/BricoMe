@@ -42,14 +42,13 @@ Route::middleware(['auth', 'role:Client'])->group(function () {
 
     Route::get('/Client', [ClientController::class , 'clientArtisans']);
     Route::get('/Reservation',[ClientController::class, 'showResesvaitons'])->name('reservation');
-    Route::get('/Reservation/{id}/delete',[ClientController::class, 'destroyReservation'])->name('reservation.destroy');
+    Route::post('/cancelReservation',[ClientController::class, 'destroyReservation'])->name('reservation.destroy');
     Route::get('/Client', [ClientController::class, 'clientArtisans']);
-
     Route::match(['get', 'post'], '/Reserve', [ClientController::class, 'Reserve']);
     Route::match(['get', 'post'], '/confirm', [ClientController::class, 'confirmReservation'])->name('confirmReservation');
     Route::post('/repport', [RapportController::class, 'store']);
     Route::get('/reporting', [RapportController::class, 'reporterData']);
-
+    Route::get('/Rated', [ClientController::class, 'Rated']);
     Route::get('/Reservation',[ClientController::class, 'showResesvaitons'])->name('Reservation');
 
 
@@ -130,10 +129,10 @@ Route::middleware(['auth', 'role:Admin'])->group(function () {
     Route::post('/editcom', [adminController::class, 'adminPage']);
     Route::get('/admin', [adminController::class, 'adminPage']);
     Route::get('/adminUsers', [adminController::class, 'UsersAdmin']);
+    Route::get('/ReclamNotif', [adminController::class, 'reclamation']);
+    Route::post('/deletRepport', [adminController::class, 'deletRepport']);
 
-    Route::get('/ReclamNotif', function () {
-        return view('Admin.ReclamNotif');
-    });
+  
 });
 
 

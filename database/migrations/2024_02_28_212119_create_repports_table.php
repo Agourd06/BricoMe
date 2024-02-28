@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('fname');
             $table->string('email');
             $table->string('message');
+            $table->string('artisanName');
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
