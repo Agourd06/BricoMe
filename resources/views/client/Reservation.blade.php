@@ -20,28 +20,27 @@
                 @foreach($reservations as $reservation)
 
                 <div class="bg-white max-w-md ml-4  p-6 rounded-lg shadow-md ">
-                @endforeach
                     <h2 class="text-center text-2xl font-extrabold mb-2 text-red-600">Reservation</h2>
 
                     <div class="text-center mb-2">
                         <label class="text-gray-700 font-bold text-sm">Artisan's Name:</label>
-                        <p class="text-gray-800 font-normal">John Doe</p>
+                        <p class="text-gray-800 font-normal">{{$reservation->artisanName}}</p>
                     </div>
 
                     <div class="flex flex-col mb-2">
                         <label class="text-gray-700 font-bold text-sm">Address:</label>
-                        <p class="text-gray-800 font-normal">123 Artisan Street, Cityville</p>
+                        <p class="text-gray-800 font-normal">{{$reservation->adress}}</p>
                     </div>
 
                     <div class="flex justify-between mb-2">
                         <div class="flex flex-col mr-2">
                             <label class="text-gray-700 font-bold text-sm">Job:</label>
-                            <p class="text-gray-800 font-normal">Artisan / Craftsperson</p>
+                            <p class="text-gray-800 font-normal">{{$reservation->Job->name}}</p>
                         </div>
 
                         <div class="flex flex-col ml-4">
                             <label class="text-gray-700 font-bold text-sm">Skills:</label>
-                            <p class="text-gray-800 font-normal">#Skill1 #Skill2 #Skill3</p>
+                            <p class="text-gray-800 font-normal">{{$reservation->Competece->name}}</p>
                         </div>
                     </div>
 
@@ -69,7 +68,7 @@
                         </button>
                     </div>
                 </div>
-
+                @endforeach
 {{--             --}}
 {{--                <div class="bg-white max-w-md ml-4  p-6 rounded-lg shadow-md ">--}}
 {{--                  <h2 class="text-center text-2xl font-extrabold mb-2 text-red-600">Reservation</h2>--}}

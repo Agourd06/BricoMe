@@ -20,4 +20,11 @@ class reservation extends Model
     'artisan_id' ,
 
   ];
+
+    public function Job(){
+        return $this->belongsTo(job::class);
+    }
+    public function Competece(){
+        return $this->belongsTo(Competence::class, 'competence_id');
+    }
 }
