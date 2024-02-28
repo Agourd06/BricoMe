@@ -67,7 +67,7 @@ use Carbon\Carbon;
                     @php
                         $createdAt = $reservation->created_at;
                         $currentTime = Carbon::now();
-                        $differenceInHours = $currentTime->diffInHours($createdAt);
+                        $differenceInHours = $currentTime->diffInMinutes($createdAt);
                     @endphp
                     @if($differenceInHours < 1)
                     <div class="flex justify-center">
@@ -76,7 +76,11 @@ use Carbon\Carbon;
                             Cancel Reservation
                         </button>
                     </div>
-
+                    @else
+                        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                            <strong class="font-bold">Alert!</strong>
+                            <span class="block sm:inline">Reservation cancellation is no longer possible as the specified time has elapsed.</span>
+                        </div>
                     @endif
                 </div>
                 @endforeach
