@@ -27,9 +27,7 @@ Route::get('/', function () {
 
 
 
-Route::get('/admin', function () {
-    return view('admin.dashboard');
-});
+
 
 //----------------------------------------------- Client---------------------------------
 
@@ -91,6 +89,10 @@ Route::middleware(['auth', 'role:Admin'])->group(function () {
     Route::post('/editcom', [adminController::class, 'adminPage']);
     Route::get('/admin', [adminController::class, 'adminPage']);
     Route::get('/adminUsers', [adminController::class, 'UsersAdmin']);
+
+    Route::get('/ReclamNotif', function () {
+        return view('Admin.ReclamNotif');
+    });
 });
 
 
