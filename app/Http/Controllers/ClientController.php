@@ -65,7 +65,7 @@ class ClientController extends Controller
         $ArtisanData = Artisan::with('artisanJobs', 'user', 'artisanCompetence')
             ->where('user_id', $artisan_id)
             ->firstOrFail();
-
+        
         return view('client.reserveArtisan', [
             'ArtisanData' => $ArtisanData,
         ]);
@@ -99,13 +99,20 @@ class ClientController extends Controller
             'artisan_id' => $reservationData['artisan_id'],
         ]);
 
-        return Redirect::route('Reservation');
+        return redirect('/Reservation');
     }
 
     public function showResesvaitons()
     {
-        $reservations = Reservation::where('client_id', '=', Auth::user()->client->id)->get();
+        $userId = Auth::id();
 
-        return view('client.Reservation', compact('reservations'));
+        $clientId = client::where('user_id' , $userId)->value('id');
+    
+        $reservations = reservation::where('client_id', $clientId)->get();
+    
+        return view('client.Reservation', [
+            'reservations' => $reservations,
+        ]);
     }
+    
 }
