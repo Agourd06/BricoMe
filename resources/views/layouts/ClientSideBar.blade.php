@@ -2,6 +2,7 @@
         <div class="flex items-center fixed top-0  justify-between p-4 bg-white z-50 h-20 w-full shadow-md">
             <h1 class="text-3xl uppercase text-indigo-500">Logo</h1>
             <i class='bx bx-menu-alt-right text-[40px] lg:hidden' onclick="toggleModal('sidebar')"></i>
+
         </div>
         <div class="w-full min-h-screen ">
             <div id="sidebar"
@@ -104,4 +105,11 @@
                 </footer>
             </div>
 
+<<<<<<< HEAD
+=======
+            @yield('artisans')
+            @yield('content')
+            @yield('Reserve')
+            @yield('Reservation')
+>>>>>>> da60df788c8f144fb9301ff92cc232c3e82aeccd
         </div>

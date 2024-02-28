@@ -53,4 +53,5 @@ class RapportController extends Controller
             'clientData' => $clientData,
         ]);
     }
+
 }
