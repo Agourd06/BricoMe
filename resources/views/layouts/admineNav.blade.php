@@ -26,7 +26,7 @@
                 <div class="h-[50%]"> <a href=""> <span
                             class="absolute md:mt-2.5   rounded-[0.37rem] bg-red-800 px-[0.45em] py-[0.2em] text-[0.6rem] leading-none text-white">1</span>
                     </a>
-                    <a href='/reclamation'
+                    <a href='/ReclamNotif'
                         class='hover:bg-[#F9B100] rounded-t-md duration-300 hover:text-white w-full h-full bg-white text-gray-600 font-bold text-[15px] flex items-center pl-4'>Réclamation</a>
                 </div>
                 <a href='/logout'

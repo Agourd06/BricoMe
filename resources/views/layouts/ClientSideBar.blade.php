@@ -1,7 +1,8 @@
     <section>
         <div class="flex items-center fixed top-0  justify-between p-4 bg-white z-50 h-20 w-full shadow-md">
-            <h1 class="text-3xl uppercase text-indigo-500">Logo</h1>
-            <i class='bx bx-menu-alt-right text-[40px] lg:hidden' onclick="toggleModal('sidebar')"></i>
+            <a href='javascript:void(0)' class="max-md:mx-auto "><img
+                src="{{ asset('storage/image/' . 'logo.png') }}" alt="logo"
+                class='w-44 inline-block' /></a>            <i class='bx bx-menu-alt-right text-[40px] lg:hidden' onclick="toggleModal('sidebar')"></i>
 
         </div>
         <div class="w-full min-h-screen ">
@@ -63,10 +64,10 @@
                 @yield('content')
                 @yield('Reservation')
                 <footer
-                    class="border border-white bg-gray-100 shadow-inner py-12 px-8 relative bottom-0 left-0 right-0 w-full font-[sans-serif] mt-10">
+                    class="border border-white bg-gray-100 shadow-inner py-12 px-8 relative bottom-0 left-0 right-0  w-full font-[sans-serif] mt-10">
                     <div class="md:flex md:items-center ">
                         <div class="md:w-76 max-md:text-center">
-                            <a href='javascript:void(0)' class="max-md:mx-auto"><img
+                            <a href='/Client' class="max-md:mx-auto"><img
                                     src="{{ asset('storage/image/' . 'logo.png') }}" alt="logo"
                                     class='w-48 inline-block' /></a>
                         </div>
@@ -105,11 +106,4 @@
                 </footer>
             </div>
 
-<<<<<<< HEAD
-=======
-            @yield('artisans')
-            @yield('content')
-            @yield('Reserve')
-            @yield('Reservation')
->>>>>>> da60df788c8f144fb9301ff92cc232c3e82aeccd
         </div>
