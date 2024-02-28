@@ -146,9 +146,7 @@
                                 <label class="text-blue-900 font-bold mb-2">Add one or multiple pictures</label>
                                 <input type="file" name="multiplePhotos[]" multiple
                                     class="py-2 px-4 bg-white rounded-md border border-gray-300">
-                                    @error('multiplePhotos')
-                                    <p class="text-red-500 text-sm">{{ $message }}</p>
-                                @enderror
+                                 
                             </div>
                         </div>
                         <input type="hidden" name="role" value="artisan" />
