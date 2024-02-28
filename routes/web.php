@@ -31,30 +31,31 @@ Route::get('/', function () {
 
 
 
-Route::get('/admin', function () {
-    return view('admin.dashboard');
-});
+
+
 //----------------------------------------------- Client---------------------------------
 
 
 
 Route::middleware(['auth', 'role:Client'])->group(function () {
 
+
     Route::get('/Client', [ClientController::class , 'clientArtisans']);
+    Route::get('/Reservation',[ClientController::class, 'showResesvaitons'])->name('reservation');
+    Route::get('/Reservation/{id}/delete',[ClientController::class, 'destroyReservation'])->name('reservation.destroy');
+    Route::get('/Client', [ClientController::class, 'clientArtisans']);
+
     Route::match(['get', 'post'], '/Reserve', [ClientController::class, 'Reserve']);
     Route::match(['get', 'post'], '/confirm', [ClientController::class, 'confirmReservation'])->name('confirmReservation');
+    Route::post('/repport', [RapportController::class, 'store']);
+    Route::get('/reporting', [RapportController::class, 'reporterData']);
 
-    Route::get('/Reservation', function (){
-        return view('client.Reservation');
-    })->name('Reservation');
 });
 
 
 
-Route::post('/repport',[RapportController::class,'store']);
-Route::get('/reporting', function () {
-    return view('client.repport');
-});
+
+
 
 //----------------------------------------------- Artisan---------------------------------
 
@@ -104,6 +105,9 @@ Route::get('/RegisterClient', function () {
     return view('client.RegisterClient');
 })->middleware(RedirectIfAuthenticated::class);
 
+Route::view('/error-page', 'errorPage')->name('errorPage');
+
+
 
 
 
@@ -122,9 +126,11 @@ Route::middleware(['auth', 'role:Admin'])->group(function () {
     Route::post('/editcom', [adminController::class, 'adminPage']);
     Route::get('/admin', [adminController::class, 'adminPage']);
     Route::get('/adminUsers', [adminController::class, 'UsersAdmin']);
+
+    Route::get('/ReclamNotif', function () {
+        return view('Admin.ReclamNotif');
+    });
 });
 
 
 // --------------------- Reservation ---------------------
-
-

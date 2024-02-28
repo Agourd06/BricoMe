@@ -85,19 +85,41 @@ class ClientController extends Controller
         ]);
         $reservationData['client_id'] = Auth::id();
         $clientId = client::where('user_id' , $reservationData['client_id'])->value('id');
-       
+
+//        dd($reservationData['job']);
          reservation::create([
             'artisanName' => $reservationData['fname'] . ' ' . $reservationData['lname'],
             'adress' => $reservationData['adress'],
-            'job' => $reservationData['job'],
-            'skill' => $reservationData['skill'],
+            'job_id' => $reservationData['job'],
+            'competence_id' => $reservationData['skill'],
             'date' => $reservationData['date'],
             'city' => $reservationData['city'],
             'price' => $reservationData['price'],
             'client_id' => $clientId,
             'artisan_id' => $reservationData['artisan_id'],
         ]);
-       
-        return Redirect::route('Reservation');
+
+        return redirect('/Reservation');
     }
+
+    public function showResesvaitons()
+    {
+        $userId = Auth::id();
+
+        $clientId = client::where('user_id' , $userId)->value('id');
+
+        $reservations = reservation::where('client_id', $clientId)->get();
+
+        return view('client.Reservation', [
+            'reservations' => $reservations,
+        ]);
+    }
+
+    public function destroyReservation($id)
+    {
+        reservation::destroy($id);
+        return to_route('reservation');
+
+    }
+
 }

@@ -162,7 +162,6 @@ class AuthController extends Controller
                 Client::create([
                     'user_id' => $user->id,
                     'description' => $clientData['description'],
-
                 ]);
                 auth()->login($user);
 

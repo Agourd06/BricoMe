@@ -20,13 +20,13 @@
             <div class="mx-auto w-full max-w-[550px] bg-white">
                 <form action="{{ route('confirmReservation') }}" method="POST" id="booking">
                     <!-- ... your form fields ... -->
-                
+
                 @csrf
 
                     <div class="-mx-3 grid grid-cols-2">
                         <input type="hidden" name="artisan_id" value="{{ $ArtisanData ? $ArtisanData->id : '' }}">
                         <div class="w-full px-3 ">
-                            <label for="name" class="mb-3 block text-base font-medium text-[#07074D]">
+                            <label for="name" class="mb-3 block text-base  font-medium text-[#07074D]">
                                 Artisan First Name :
                             </label>
                             <div class="mb-5">
@@ -76,6 +76,7 @@
                             <div class="mb-5">
                                 <select type="text" name="skill" id="skill"
                                     class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
+                                   <option selected>select Skill</option>
                                     @foreach ($ArtisanData->competences as $artisanCompetence)
                                         <option class="text-sm mt-4" value="{{ $artisanCompetence->id }}"
                                             data-tarif="{{ $artisanCompetence->pivot->tarif }}">

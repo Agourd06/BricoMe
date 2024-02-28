@@ -11,13 +11,20 @@ class reservation extends Model
   protected  $fillable = [
     'artisanName' ,
     'adress' ,
-    'job' ,
-    'skill' ,
+    'job_id' ,
+    'competence_id' ,
     'date' ,
     'city' ,
     'price' ,
     'client_id' ,
     'artisan_id' ,
-         
+
   ];
+
+    public function Job(){
+        return $this->belongsTo(job::class);
+    }
+    public function Competece(){
+        return $this->belongsTo(Competence::class, 'competence_id');
+    }
 }

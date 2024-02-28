@@ -44,7 +44,7 @@
                     <form class="" action="/Client" method="GET">
 
 
-                        <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                        <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
                             <div class="flex flex-col">
                                 <label for="manufacturer" class="text-sm font-medium text-stone-600">Jobs</label>
 
@@ -71,11 +71,7 @@
                                 </select>
                             </div>
 
-                            <div class="flex flex-col">
-                                <label for="date" class="text-sm font-medium text-stone-600">Date of Entry</label>
-                                <input type="date" id="date"
-                                    class="mt-2 block w-full cursor-pointer rounded-md border border-gray-100 bg-gray-100 px-2 py-2 shadow-sm outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50" />
-                            </div>
+                        
 
                             <div class="flex flex-col">
                                 <label for="status" class="text-sm font-medium text-stone-600">Citys</label>
@@ -106,11 +102,11 @@
         {{-- --------------------------------Artisans Data section--------------------------------  --}}
 
         <div class="bg-white font-[sans-serif] p-4">
-            <div class="max-w-6xl max-md:max-w-lg mx-auto">
+            <div class="max-w-6xl md:max-w-full mx-auto md:px-12">
                 <div class="w-full text-center ">
                     <h2 class="text-3xl font-extrabold text-[#333]  inline-block">Artisans</h2>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-20 mt-10">
 
                     @foreach ($artisans as $artisan)
                         <div
