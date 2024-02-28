@@ -11,5 +11,6 @@ class artisanCompetence extends Model
     protected $fillable = [
         'competence',
         'artisan_id',
+        'tarif',
     ];
 }
