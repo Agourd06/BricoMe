@@ -39,16 +39,19 @@ Route::middleware(['auth', 'role:Client'])->group(function () {
     Route::get('/Client', [ClientController::class , 'clientArtisans']);
     Route::match(['get', 'post'], '/Reserve', [ClientController::class, 'Reserve']);
     Route::match(['get', 'post'], '/confirm', [ClientController::class, 'confirmReservation'])->name('confirmReservation');
-
     Route::get('/Reservation',[ClientController::class, 'showResesvaitons'])->name('Reservation');
-});
+
+    Route::post('/repport',[RapportController::class,'store']);
+    Route::get('/reporting', function () {
+        return view('client.repport');
+    });
 
 
 
-Route::post('/repport',[RapportController::class,'store']);
-Route::get('/reporting', function () {
-    return view('client.repport');
-});
+
+
+
+
 
 //----------------------------------------------- Artisan---------------------------------
 

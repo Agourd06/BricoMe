@@ -1,10 +1,10 @@
     <div class="flex items-center fixed top-0  justify-between p-4 bg-white z-50 h-20 w-full shadow-md">
-        <h1 class="text-3xl uppercase text-indigo-500">Logo</h1>
+        <img class="h-36 w-36" src="{{ asset('storage/image/' . 'logo.png') }}" alt="">
         <i class='bx bx-menu-alt-right text-[40px] lg:hidden' onclick="toggleModal('sidebar')"></i>
     </div>
     <div class="w-full min-h-screen ">
         <div id="sidebar"
-            class="hidden z-50  lg:flex h-full flex-col fixed  bottom-0 top-0 md:top-20 right-0 lg:left-0 w-[340px] pt-8 bg-white shadow-2xl overflow-hidden">
+            class="hidden z-50   lg:flex h-full flex-col fixed  bottom-0 top-0 md:top-20 right-0 lg:left-0 w-[340px] pt-8 bg-white shadow-2xl overflow-hidden">
             <div class="w-full pl-2 lg:hidden"><i class='bx bx-x-circle text-[30px] text-[#858585]'></i></div>
             <ul class="flex flex-col py-4">
 
@@ -51,12 +51,13 @@
                                 class="bx bx-log-out"></i></span>
                         <span class="text-sm font-medium">Logout</span>
                     </a>
-                </li>
+                </li>º
             </ul>
         </div>
         <div class="lg:w-[80%]  mt-20  lg:ml-auto">
 
             @yield('artisans')
+            @yield('content')
             @yield('Reserve')
             @yield('Reservation')
         </div>
