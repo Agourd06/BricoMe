@@ -159,4 +159,8 @@ class adminController extends Controller
         return redirect('/ReclamNotif')->with('success' , 'Reclamation Deleted Successfully');
 
     }
+    public function AcceptJob(){
+        $reclamationCount = Rapport::count();
+        return view('Admin.addJob' , ['reclamationCount' => $reclamationCount,]);
+    }
 }

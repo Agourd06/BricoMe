@@ -45,8 +45,9 @@ Route::middleware(['auth', 'role:Client'])->group(function () {
     Route::get('/reporting', [RapportController::class, 'reporterData']);
     Route::get('/Rated', [ClientController::class, 'Rated']);
     Route::get('/Reservation',[ClientController::class, 'showResesvaitons'])->name('Reservation');
+    Route::post('/Profile',[ClientController::class, 'Profile']);
 
-
+   
 });
 
 
@@ -126,15 +127,10 @@ Route::middleware(['auth', 'role:Admin'])->group(function () {
     Route::get('/adminUsers', [adminController::class, 'UsersAdmin']);
     Route::get('/ReclamNotif', [adminController::class, 'reclamation']);
     Route::post('/deletRepport', [adminController::class, 'deletRepport']);
-
-    Route::get('/addjob', function () {
-    return view('Admin.addJob');
-});
+    Route::get('/addjob', [adminController::class, 'acceptJob']);
 
 
-    Route::get('/ReclamNotif', function () {
-        return view('Admin.ReclamNotif');
-    });
+ 
 
 });
 

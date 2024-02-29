@@ -8,6 +8,7 @@ use App\Models\Client;
 use App\Models\review;
 use App\Models\Artisan;
 use App\Models\Competence;
+use App\Models\image;
 use App\Models\reservation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -122,6 +123,25 @@ class ClientController extends Controller
         ]);
     }
 
+    public function Profile(Request $request)
+    {
+        $artisanId =  $request->input('artisan_id');
+        $artisan = Artisan::with('artisanJobs', 'user', 'artisanCompetence')
+        ->where('id', $artisanId)
+        ->firstOrFail();
+        $reservations = reservation::where('artisan_id' , $artisanId)->count();      
+        $images = image::where('artisan_id' , $artisanId)->count();      
+        $comments = review::where('artisan_id' , $artisanId)->count();  
+        return view('client.ArtisanData'
+        ,[
+            'artisan' => $artisan,
+            'reservations' => $reservations,
+            'images' => $images,
+            'comments' => $comments,
+        ]
+    );
+    }
+
     public function destroyReservation(Request $request)
     {
 
@@ -158,9 +178,9 @@ class ClientController extends Controller
             
             $artisan->save();
             
-            // return redirect('/Reservation');
+            return redirect('/Reservation');
     } else {
-        // return redirect('/Reservation')->with('error', "You can't spam review");
+        return redirect('/Reservation')->with('error', "You can't spam review");
     }
 }
 }
