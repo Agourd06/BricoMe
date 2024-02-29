@@ -73,7 +73,7 @@
                                              </div>
                         </div>
                         @else
-                        <div class="">
+                        <div class="sm:col-span-2">
                             <label for="email" class="block text-sm font-semibold leading-6 text-gray-900">Artisan</label>
 
                             <select type="text" name="artisanName" id="area"
@@ -82,6 +82,7 @@
                                     <option value="{{ $artisan->user->lname }} {{ $artisan->user->fname}}">{{ $artisan->user->lname }} {{ $artisan->user->fname}}</option>
                                 @endforeach
                             </select>
+                            <div  class="mt-2"><p>You Can Found the exact Artisan in Reservation Page and report him easly</p></div>
                         </div>
                         @endif
                         <div class="sm:col-span-2">

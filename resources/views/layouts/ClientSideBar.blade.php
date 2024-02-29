@@ -1,6 +1,6 @@
     <section>
         <div class="flex items-center fixed top-0  justify-between p-4 bg-white z-50 h-20 w-full shadow-md">
-            <a href='javascript:void(0)' class="max-md:mx-auto "><img
+            <a href='/Client' class="max-md:mx-auto "><img
                 src="{{ asset('storage/image/' . 'logo.png') }}" alt="logo"
                 class='w-44 inline-block' /></a>            <i class='bx bx-menu-alt-right text-[40px] lg:hidden' onclick="toggleModal('sidebar')"></i>
 
@@ -69,19 +69,18 @@
                                 <ul
                                     class="col-span-2 md:flex max-lg:justify-center max-md:text-center md:space-x-4 max-md:space-y-4">
                                     <li>
-                                        <a href=''
-                                            class='hover:text-[#3554AD] text-[#3524AD] text-[15px]'>Recipes</a>
+                                        <a href='/Client'
+                                            class='hover:text-[#3554AD] text-[#3524AD] text-[15px]'>Artisans</a>
                                     </li>
                                     <li>
-                                        <a href='/UserRecipe'
-                                            class='hover:text-[#3524AD] text-[#3524AD] text-[15px]'>Profile</a>
+                                        <a href='/Reservation'
+                                            class='hover:text-[#3524AD] text-[#3524AD] text-[15px]'>Reservations</a>
                                     </li>
                                     <li>
-                                        <a href='' class='hover:text-[#3554AD] text-[#3524AD] text-[15px]'>Add
-                                            recipe</a>
+                                        <a href='/reporting' class='hover:text-[#3554AD] text-[#3524AD] text-[15px]'>Repports</a>
                                     </li>
                                     <li>
-                                        <a href='/' class='hover:text-[#3554AD] text-[#3524AD] text-[15px]'>log
+                                        <a href='/logout' class='hover:text-[#3554AD] text-[#3524AD] text-[15px]'>log
                                             out</a>
                                     </li>
 
@@ -90,7 +89,7 @@
                             </div>
                             <div class="border-t text-center border-[#6b5f5f] pt-8 mt-8">
                                 <div class="text-center flex items-center justify-center mt-12 ">
-                                    <p class='text-sm text-[#3554AD]  '>Copyright © 2024 foodHouse All Rights Reserved.
+                                    <p class='text-sm text-[#3554AD]  '>Copyright © 2024 BricoleMe All Rights Reserved.
                                     </p>
 
                                 </div>

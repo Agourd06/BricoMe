@@ -70,7 +70,7 @@ class AuthController extends Controller
                     'job_id' => 'required',
                     'skills' => 'required|array',
                     'type' => 'artisan',
-                    'multiplePhotos.*' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:2048'],
+                    'multiplePhotos.*' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:3060'],
                 ], [
                     'description.required' => 'Description is empty! Please fill it out.',
                     'job_id.required' => 'Job is empty! Please fill it out.',
@@ -98,7 +98,7 @@ class AuthController extends Controller
 
             if ($request->hasFile('Profil')) {
                 $file = $request->file('Profil');
-                $pictureName = time() . '.' . $file->extension();
+                $pictureName = time() . '1.' . $file->extension();
                 $file->storeAs('public/image', $pictureName);
                 $userData['Profil'] = $pictureName;
             }
@@ -124,7 +124,7 @@ class AuthController extends Controller
                 if ($request->hasFile('multiplePhotos')) {
                     $files = $request->file('multiplePhotos');
                     foreach ($files as $file) {
-                        $picturesName = time() . '.' . $file->extension();
+                        $picturesName = time() . '_' . uniqid() . '.' . $file->extension();
                         $file->storeAs('public/image', $picturesName);
                         image::create([
                             'image' => $picturesName,

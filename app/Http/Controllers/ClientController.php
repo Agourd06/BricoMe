@@ -117,6 +117,7 @@ class ClientController extends Controller
         ->orderBy('created_at', 'desc')
         ->get();
         $ReservTotal = reservation::count();
+        
         return view('client.Reservation', [
             'reservations' => $reservations,
             'ReservTotal' => $ReservTotal,
@@ -131,6 +132,7 @@ class ClientController extends Controller
         ->firstOrFail();
         $reservations = reservation::where('artisan_id' , $artisanId)->count();      
         $images = image::where('artisan_id' , $artisanId)->count();      
+        $imagesArtisan = image::where('artisan_id' , $artisanId)->get();      
         $comments = review::where('artisan_id' , $artisanId)->count();  
         return view('client.ArtisanData'
         ,[
@@ -138,6 +140,7 @@ class ClientController extends Controller
             'reservations' => $reservations,
             'images' => $images,
             'comments' => $comments,
+            'imagesArtisan' => $imagesArtisan,
         ]
     );
     }
@@ -150,37 +153,35 @@ class ClientController extends Controller
     }
     public function Rated(Request $request)
     {
-        $data =  review::where('client_id', $request->input('client_id'))
-                      ->where('artisan_id',  $request->input('artisan_id'))
-                      ->where('reservation_id', $request->input('reservation_id'))
-                      ->first();
-    
-        if ($data == null) {
-            
-            review::create([
-                'rating' => $request->input('rating'),
-                'comment' => $request->input('comment'),
-                'client_id' => $request->input('client_id'),
-                'artisan_id' => $request->input('artisan_id'),
-                'reservation_id' => $request->input('reservation_id'),
-            ]);
-            $artisanId = $request->input('artisan_id');
-
-          dd($artisanId);
-
-            $averageRating = Review::where('artisan_id', $artisanId)->avg('rating');
-            
-            $artisan = Artisan::find($artisanId);
-            
-            $averageValue = number_format($averageRating, 2, '.', '');
-            
-            $artisan->Avg = $averageValue - 1;
-            
-            $artisan->save();
-            
-            return redirect('/Reservation');
-    } else {
-        return redirect('/Reservation')->with('error', "You can't spam review");
-    }
+       
+            $client_id = $request->input('client_id');
+            $artisan_id = $request->input('artisan_id');
+            $reservation_id = $request->input('reservation_id');
+        
+            if ($client_id && $artisan_id && $reservation_id) {
+                $data = Review::where('client_id', $client_id)
+                              ->where('artisan_id', $artisan_id)
+                              ->where('reservation_id', $reservation_id)
+                              ->first();
+        
+                if ($data == null) {
+                    Review::create([
+                        'rating' => $request->input('rating'),
+                        'comment' => $request->input('comment'),
+                        'client_id' => $client_id,
+                        'artisan_id' => $artisan_id,
+                        'reservation_id' => $reservation_id,
+                    ]);
+        
+        
+                    return redirect('/Reservation');
+                } else {
+                    return redirect('/Reservation')->with('error', "You can't spam review");
+                }
+            } else {
+                return redirect('/Reservation')->with('error', "Invalid input data");
+            }
+        }
+        
 }
-}
+
