@@ -130,19 +130,37 @@ class ClientController extends Controller
     }
     public function Rated(Request $request)
     {
-        $data =  review::where('client_id', $request->input('client_id'))->where('artisan_id',  $request->input('artisan_id'))->where('reservation_id' ,$request->input('reservation_id') )->first();
+        $data =  review::where('client_id', $request->input('client_id'))
+                      ->where('artisan_id',  $request->input('artisan_id'))
+                      ->where('reservation_id', $request->input('reservation_id'))
+                      ->first();
+    
         if ($data == null) {
+            
             review::create([
                 'rating' => $request->input('rating'),
                 'comment' => $request->input('comment'),
                 'client_id' => $request->input('client_id'),
                 'artisan_id' => $request->input('artisan_id'),
                 'reservation_id' => $request->input('reservation_id'),
-
             ]);
-            return redirect('/Reservation');
-        } else {
-            return redirect('/Reservation')->with('error', "You Can't spam review");
-        }
+            $artisanId = $request->input('artisan_id');
+
+          dd($artisanId);
+
+            $averageRating = Review::where('artisan_id', $artisanId)->avg('rating');
+            
+            $artisan = Artisan::find($artisanId);
+            
+            $averageValue = number_format($averageRating, 2, '.', '');
+            
+            $artisan->Avg = $averageValue - 1;
+            
+            $artisan->save();
+            
+            // return redirect('/Reservation');
+    } else {
+        // return redirect('/Reservation')->with('error', "You can't spam review");
     }
+}
 }
