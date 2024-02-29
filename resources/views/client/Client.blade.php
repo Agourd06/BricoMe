@@ -20,7 +20,7 @@
     @section('artisans')
         {{-- --------------------------------Blog section--------------------------------  --}}
         <div class="relative w-full z-30 ">
-            <video class="w-full h-[30vh] md:h-[20vh] lg:h-[20vh] xl:h-[40vh] object-cover" autoplay loop muted>
+            <video class="w-full bg-t h-[30vh] md:h-[20vh] lg:h-[20vh] xl:h-[40vh] object-cover" autoplay loop muted>
                 <source src="{{ asset('storage/image/' . 'bricolage.mp4') }}" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
@@ -71,7 +71,7 @@
                                 </select>
                             </div>
 
-                        
+
 
                             <div class="flex flex-col">
                                 <label for="status" class="text-sm font-medium text-stone-600">Citys</label>
@@ -102,63 +102,75 @@
         {{-- --------------------------------Artisans Data section--------------------------------  --}}
 
         <div class="bg-white font-[sans-serif] p-4">
-            <div class="max-w-6xl md:max-w-full mx-auto md:px-12">
-                <div class="w-full text-center ">
-                    <h2 class="text-3xl font-extrabold text-red-600  inline-block">Artisans</h2>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-20 mt-10">
+            @if ($artisans->count() > 0)
 
-                    @foreach ($artisans as $artisan)
-                        <div
-                            class="flex max-lg:flex-col bg-white cursor-pointer rounded overflow-hidden shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)]  transition-all duration-300">
-                            <img src="{{ asset('storage/image/' . $artisan->user->Profil) }}" alt="Blog Post 2"
-                                class="lg:w-2/5 min-h-[250px] h-full object-cover" />
-                            <div class="p-6 lg:w-3/5">
-                                <h3 class="text-xl font-bold flex text-[#333]">
-                                    @foreach ($artisan->artisanJobs as $artisanJob)
-                                        {{ $artisanJob->job->name }}  .
+                <div class="max-w-6xl md:max-w-full mx-auto md:px-12">
+                    <div class="w-full text-center ">
+                        <h2 class="text-3xl font-extrabold text-red-600  inline-block">Artisans</h2>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-20 mt-10">
 
-                                    @endforeach
-                                </h3>
-                                <span class="text-sm block text-gray-400 mt-2"> {{ $artisan->user->lname }}
-                                    {{ $artisan->user->fname }} </span>
-                                <div class="flex flex-col  gap-2">
-                                    @foreach ($artisan->competences as $artisanCompetence)
-                                        <p class="text-sm mt-4">
-                                            {{ $artisanCompetence->name }}
-                                        </p>
-                                    @endforeach
-                                </div>
-                                <div
-                                    class="flex w-full gap-2 justify-center md:h-[6vh] font-bold items-center mb-4 md:justify-start">
-                                    <p> {{ $artisan->availablity }}</p>
-
-
-                                    {{-- ----------------------- Condition For Dispo icon -------------------- --}}
-
-
-                                    @if ($artisan->availablity === 'Available')
-                                        <img srcset="https://img.icons8.com/?size=48&amp;id=FkQHNSmqWQWH&amp;format=png 1x, https://img.icons8.com/?size=96&amp;id=FkQHNSmqWQWH&amp;format=png 2x,"
-                                            src="https://img.icons8.com/?size=96&amp;id=FkQHNSmqWQWH&amp;format=png"
-                                            alt="emoji-cercle-vert" loading="lazy" width="20" height="20"
-                                            style="width: 15px; height: 15px; " lazy="loaded" class="animate-pulse">
-                                    @endif
-
-                                    {{-- --------------------- Condition For Dispo icon ---------------------- --}}
-
-                                </div>
-                                
-                                <div class="flex gap-2 items-center justify-between mt-4">
-                                  <form action="/Profile" method="Post"> @csrf <input type="hidden" value="{{$artisan->id}}" name="artisan_id"> <button type="submit" class="text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800">Read More</button></form>
-                                  <form action="/Reserve" method="post"> @csrf <input type="hidden" value="{{$artisan->user->id}}" name="artisan_id"> <button type="submit" class="text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800">Reserve</button></form>
-
-                                    
+                        @foreach ($artisans as $artisan)
+                            <div
+                                class="flex max-lg:flex-col bg-white cursor-pointer rounded overflow-hidden shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)]  transition-all duration-300">
+                                <img src="{{ asset('storage/image/' . $artisan->user->Profil) }}" alt="Blog Post 2"
+                                    class="lg:w-2/5 min-h-[250px] h-full object-cover" />
+                                <div class="p-6 lg:w-3/5">
+                                    <h3 class="text-xl font-bold flex text-[#333]">
+                                        @foreach ($artisan->artisanJobs as $artisanJob)
+                                            {{ $artisanJob->job->name }} .
+                                        @endforeach
+                                    </h3>
+                                    <span class="text-sm block text-gray-400 mt-2"> {{ $artisan->user->lname }}
+                                        {{ $artisan->user->fname }} </span>
+                                    <div class="flex flex-col  gap-2">
+                                        @foreach ($artisan->competences as $artisanCompetence)
+                                            <p class="text-sm mt-4">
+                                                {{ $artisanCompetence->name }}
+                                            </p>
+                                        @endforeach
                                     </div>
+                                    <div
+                                        class="flex w-full gap-2 justify-center md:h-[6vh] font-bold items-center mb-4 md:justify-start">
+                                        <p> {{ $artisan->availablity }}</p>
+
+
+                                        {{-- ----------------------- Condition For Dispo icon -------------------- --}}
+
+
+                                        @if ($artisan->availablity === 'Available')
+                                            <img srcset="https://img.icons8.com/?size=48&amp;id=FkQHNSmqWQWH&amp;format=png 1x, https://img.icons8.com/?size=96&amp;id=FkQHNSmqWQWH&amp;format=png 2x,"
+                                                src="https://img.icons8.com/?size=96&amp;id=FkQHNSmqWQWH&amp;format=png"
+                                                alt="emoji-cercle-vert" loading="lazy" width="20" height="20"
+                                                style="width: 15px; height: 15px; " lazy="loaded" class="animate-pulse">
+                                        @endif
+
+                                        {{-- --------------------- Condition For Dispo icon ---------------------- --}}
+
+                                    </div>
+
+                                    <div class="flex gap-2 items-center justify-between mt-4">
+                                        <form action="/Profile" method="Post"> @csrf <input type="hidden"
+                                                value="{{ $artisan->id }}" name="artisan_id"> <button type="submit"
+                                                class="text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800">Read
+                                                More</button></form>
+                                        <form action="/Reserve" method="post"> @csrf <input type="hidden"
+                                                value="{{ $artisan->user->id }}" name="artisan_id"> <button type="submit"
+                                                class="text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800">Reserve</button>
+                                        </form>
+
+
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    @endforeach
+                        @endforeach
+                    </div>
                 </div>
-            </div>
+                @else
+                <div class="w-full text-xl font-semibold text-center mt-10">
+                    <p>No Artisan Found</p>
+                </div>
+                @endif
         </div>
         {{-- --------------------------------End Artisans Data section--------------------------------  --}}
     @endsection

@@ -128,6 +128,7 @@ Route::middleware(['auth', 'role:Admin'])->group(function () {
     Route::get('/ReclamNotif', [adminController::class, 'reclamation']);
     Route::post('/deletRepport', [adminController::class, 'deletRepport']);
     Route::get('/addjob', [adminController::class, 'acceptJob']);
+    Route::post('/archiveUser', [adminController::class, 'archiveUser']);
 
 
  

@@ -28,48 +28,58 @@
                     user reports.</p>
                 <h3 class="text-center text-xl font-bold">Your Decision Matters</h3>
             </div>
-            <div class=" w-[80%] text-center py-4 px-8 grid grid-cols-1 h-full">
-                @if (session('success'))
-                <div id="success-message" class="bg-green-600 rounded-md  fixed right-20  top-50 z-50 text-white p-4 text-center animate-bounce mb-4">
-                    {{ session('success') }}
-                </div>
-  
-                <script>
-                    setTimeout(function() {
-                        document.getElementById('success-message').style.display = 'none';
-                    }, 5000);
-                </script>
-            @endif
-                @foreach ($reclamations as $reclamation)
-                    <div class="mb-8 border border-gray-100 border-solid ">
-                        <div class="px-8 w-full py-4  rounded-md shadow-lg">
-                            <div class=" ">
-                                <div class="text-left font-semibold">
-                                    <h1>Dear Administrator,</h1>
+            @if ($reclamations->count() > 0)
+                <div class=" w-[80%] text-center py-4 px-8 grid grid-cols-1 h-full">
+                    @if (session('success'))
+                        <div id="success-message"
+                            class="bg-green-600 rounded-md  fixed right-20  top-50 z-50 text-white p-4 text-center animate-bounce mb-4">
+                            {{ session('success') }}
+                        </div>
+
+                        <script>
+                            setTimeout(function() {
+                                document.getElementById('success-message').style.display = 'none';
+                            }, 5000);
+                        </script>
+                    @endif
+                    @foreach ($reclamations as $reclamation)
+                        <div class="mb-8 border border-gray-100 border-solid ">
+                            <div class="px-8 w-full py-4  rounded-md shadow-lg">
+                                <div class=" ">
+                                    <div class="text-left font-semibold">
+                                        <h1>Dear Administrator,</h1>
+                                    </div>
+                                    <i class='bx bxs-bell-ring text-right text-2xl' style='color:#bf0000'></i>
+
                                 </div>
-                                <i class='bx bxs-bell-ring text-right text-2xl' style='color:#bf0000'></i>
 
-                            </div>
-
-                            <p>{{ $reclamation->message }}
-                            </p>
-                            <div class="flex justify-between">
-                                <p class="font-semibold">{{ $reclamation->email }} </p>
-                                <p class="font-semibold">Client : {{ $reclamation->fname }} {{ $reclamation->lname }}
+                                <p>{{ $reclamation->message }}
+                                </p>
+                                <div class="flex justify-between">
+                                    <p class="font-semibold">{{ $reclamation->email }} </p>
+                                    <p class="font-semibold">Client : {{ $reclamation->fname }}
+                                        {{ $reclamation->lname }}
+                                    </p>
+                                </div>
+                                <p class="font-semibold text-center">Repported Artisan : {{ $reclamation->artisanName }}
                                 </p>
                             </div>
-                            <p class="font-semibold text-center">Repported Artisan : {{ $reclamation->artisanName }}</p>
+                            <form action="/deletRepport" method="post">
+                                @csrf
+                                <input type="hidden" name="repport_id" value="{{ $reclamation->id }}">
+                                <button type="submit"
+                                    class=" w-full  px-8 bg-red-700 hover:bg-red-400 text-white shadow-xl">delete</button>
+                            </form>
+
                         </div>
-                        <form action="/deletRepport" method="post">
-                            @csrf
-                            <input type="hidden" name="repport_id" value="{{ $reclamation->id }}">
-                            <button type="submit" class=" w-full  px-8 bg-red-700 hover:bg-red-400 text-white shadow-xl">delete</button>
-                        </form>
+                    @endforeach
 
-                    </div>
-                @endforeach
-
-            </div>
+                </div>
+            @else
+                <div class="w-full text-xl font-semibold text-center mt-10">
+                    <p>No Reclamation Found</p>
+                </div>
+            @endif
         </div>
 
     </section>

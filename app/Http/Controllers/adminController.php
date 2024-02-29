@@ -83,7 +83,7 @@ class adminController extends Controller
     public function UsersAdmin()
     {
         // ----------------userAdmin data----------------
-        $artisans = Artisan::with('artisanJobs', 'user' )->get();
+        $artisans = Artisan::with('artisanJobs', 'user')->get();
         $reclamationCount = Rapport::count();
 
         $Clients = Client::with('user')->get();
@@ -120,6 +120,25 @@ class adminController extends Controller
 
         return redirect('/admin');
     }
+    public function archiveUser(Request $request)
+    {
+        $archiveValue = $request->input('archiveUs');
+        if ($request->input('role') == 'client') {
+            Client::where('id', $request->input('client_id'))
+                ->update([
+                    'statut' => $archiveValue,
+
+                ]);
+        }
+        if ($request->input('role') == 'artisan') {
+            Artisan::where('id', $request->input('artisan_id'))
+                ->update([
+                    'statut' => $archiveValue,
+
+                ]);
+        }
+        return redirect('/adminUsers');
+    }
     public function updateJob(Request $request)
     {
 
@@ -145,22 +164,23 @@ class adminController extends Controller
         return redirect('/admin');
     }
 
-    public function reclamation(){
+    public function reclamation()
+    {
         $reclamations = Rapport::all();
         $reclamationCount = Rapport::count();
         return View('Admin.ReclamNotif', [
-            'reclamations'=> $reclamations,
-            'reclamationCount'=> $reclamationCount,
+            'reclamations' => $reclamations,
+            'reclamationCount' => $reclamationCount,
         ]);
-
     }
-    public function deletRepport(Request $request){
+    public function deletRepport(Request $request)
+    {
         Rapport::destroy($request->input('repport_id'));
-        return redirect('/ReclamNotif')->with('success' , 'Reclamation Deleted Successfully');
-
+        return redirect('/ReclamNotif')->with('success', 'Reclamation Deleted Successfully');
     }
-    public function AcceptJob(){
+    public function AcceptJob()
+    {
         $reclamationCount = Rapport::count();
-        return view('Admin.addJob' , ['reclamationCount' => $reclamationCount,]);
+        return view('Admin.addJob', ['reclamationCount' => $reclamationCount,]);
     }
 }

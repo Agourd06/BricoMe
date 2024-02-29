@@ -73,41 +73,44 @@
                                 </td>
                                 <td class="  md:text-[15px] text-left pl-8 text-[12px]">
                                     @foreach ($artisan->artisanJobs as $artisanJob)
-                                        {{$artisanJob->job->name }}
+                                        {{ $artisanJob->job->name }}
                                     @endforeach
                                 </td>
 
                                 <td class="pl-4 pt-8 flex">
-                                    <form action="/archiveUser" method="post">
-                                        @csrf
-                                        <input type="hidden" name="UserId" value="">
-                                        <input type="hidden" name="archiveUs" value="1">
-                                        <input type="hidden" name="role" value="passager">
-                                        <button class="mr-4" title="archive" name="archive" value="">
-                                            <svg xmlns="http://www.w3.org/2000/svg" height="24" fill="red"
-                                                viewBox="0 -960 960 960" width="24">
-                                                <path
-                                                    d="m480-240 160-160-56-56-64 64v-168h-80v168l-64-64-56 56 160 160ZM200-640v440h560v-440H200Zm0 520q-33 0-56.5-23.5T120-200v-499q0-14 4.5-27t13.5-24l50-61q11-14 27.5-21.5T250-840h460q18 0 34.5 7.5T772-811l50 61q9 11 13.5 24t4.5 27v499q0 33-23.5 56.5T760-120H200Zm16-600h528l-34-40H250l-34 40Zm264 300Z" />
-                                            </svg>
-                                        </button>
+                                    @if ((int)$artisan->statut === 0)
+                                        <form action="/archiveUser" method="post">
+                                            @csrf
+                                            <input type="hidden" name="artisan_id" value="{{$artisan->id}}">
+                                            <input type="hidden" name="archiveUs" value="1">
+                                            <input type="hidden" name="role" value="artisan">
+                                            <button class="mr-4" title="archive" name="archive" value="">
+                                                <svg xmlns="http://www.w3.org/2000/svg" height="24" fill="red"
+                                                    viewBox="0 -960 960 960" width="24">
+                                                    <path
+                                                        d="m480-240 160-160-56-56-64 64v-168h-80v168l-64-64-56 56 160 160ZM200-640v440h560v-440H200Zm0 520q-33 0-56.5-23.5T120-200v-499q0-14 4.5-27t13.5-24l50-61q11-14 27.5-21.5T250-840h460q18 0 34.5 7.5T772-811l50 61q9 11 13.5 24t4.5 27v499q0 33-23.5 56.5T760-120H200Zm16-600h528l-34-40H250l-34 40Zm264 300Z" />
+                                                </svg>
+                                            </button>
 
 
-                                    </form>
-                                    <form action="/archiveUser" method="post">
-                                        @csrf
-                                        <input type="hidden" name="UserId" value="">
-                                        <input type="hidden" name="archiveUs" value="0">
-                                        <input type="hidden" name="role" value="passager">
+                                        </form>
+                                    @else
+                                        <form action="/archiveUser" method="post">
+                                            @csrf
+                                            <input type="hidden" name="artisan_id" value="{{$artisan->id}}">
+                                            <input type="hidden" name="archiveUs" value="0">
+                                            <input type="hidden" name="role" value="artisan">
 
-                                        <button class="mr-4" title="archive" name="unarchive" value="">
-                                            <svg xmlns="http://www.w3.org/2000/svg" height="24" fill="green"
-                                                viewBox="0 -960 960 960" width="24">
-                                                <path
-                                                    d="M480-560 320-400l56 56 64-64v168h80v-168l64 64 56-56-160-160Zm-280-80v440h560v-440H200Zm0 520q-33 0-56.5-23.5T120-200v-499q0-14 4.5-27t13.5-24l50-61q11-14 27.5-21.5T250-840h460q18 0 34.5 7.5T772-811l50 61q9 11 13.5 24t4.5 27v499q0 33-23.5 56.5T760-120H200Zm16-600h528l-34-40H250l-34 40Zm264 300Z" />
-                                            </svg>
+                                            <button class="mr-4" title="archive" name="unarchive" value="">
+                                                <svg xmlns="http://www.w3.org/2000/svg" height="24" fill="green"
+                                                    viewBox="0 -960 960 960" width="24">
+                                                    <path
+                                                        d="M480-560 320-400l56 56 64-64v168h80v-168l64 64 56-56-160-160Zm-280-80v440h560v-440H200Zm0 520q-33 0-56.5-23.5T120-200v-499q0-14 4.5-27t13.5-24l50-61q11-14 27.5-21.5T250-840h460q18 0 34.5 7.5T772-811l50 61q9 11 13.5 24t4.5 27v499q0 33-23.5 56.5T760-120H200Zm16-600h528l-34-40H250l-34 40Zm264 300Z" />
+                                                </svg>
 
-                                        </button>
-                                    </form>
+                                            </button>
+                                        </form>
+                                    @endif
                                 </td>
                                 <td class="pl-8 pt-8 ">
                                     <form action="/archiveUser" method="post">
@@ -187,36 +190,39 @@
                                 </td>
 
                                 <td class="pl-4 pt-8 flex">
-                                    <form action="/archiveUser" method="post">
-                                        @csrf
-                                        <input type="hidden" name="UserId" value="">
-                                        <input type="hidden" name="archiveUs" value="1">
-                                        <input type="hidden" name="role" value="passager">
-                                        <button class="mr-4" title="archive" name="archive" value="">
-                                            <svg xmlns="http://www.w3.org/2000/svg" height="24" fill="red"
-                                                viewBox="0 -960 960 960" width="24">
-                                                <path
-                                                    d="m480-240 160-160-56-56-64 64v-168h-80v168l-64-64-56 56 160 160ZM200-640v440h560v-440H200Zm0 520q-33 0-56.5-23.5T120-200v-499q0-14 4.5-27t13.5-24l50-61q11-14 27.5-21.5T250-840h460q18 0 34.5 7.5T772-811l50 61q9 11 13.5 24t4.5 27v499q0 33-23.5 56.5T760-120H200Zm16-600h528l-34-40H250l-34 40Zm264 300Z" />
-                                            </svg>
-                                        </button>
+                                    @if ((int)$client->statut === 0)
+                                        <form action="/archiveUser" method="post">
+                                            @csrf
+                                            <input type="hidden" name="client_id" value="{{$client->id}}">
+                                            <input type="hidden" name="archiveUs" value="1">
+                                            <input type="hidden" name="role" value="client">
+                                            <button class="mr-4" title="archive" name="archive" value="">
+                                                <svg xmlns="http://www.w3.org/2000/svg" height="24" fill="red"
+                                                    viewBox="0 -960 960 960" width="24">
+                                                    <path
+                                                        d="m480-240 160-160-56-56-64 64v-168h-80v168l-64-64-56 56 160 160ZM200-640v440h560v-440H200Zm0 520q-33 0-56.5-23.5T120-200v-499q0-14 4.5-27t13.5-24l50-61q11-14 27.5-21.5T250-840h460q18 0 34.5 7.5T772-811l50 61q9 11 13.5 24t4.5 27v499q0 33-23.5 56.5T760-120H200Zm16-600h528l-34-40H250l-34 40Zm264 300Z" />
+                                                </svg>
+                                            </button>
 
 
-                                    </form>
-                                    <form action="/archiveUser" method="post">
-                                        @csrf
-                                        <input type="hidden" name="UserId" value="">
-                                        <input type="hidden" name="archiveUs" value="0">
-                                        <input type="hidden" name="role" value="passager">
+                                        </form>
+                                    @else
+                                        <form action="/archiveUser" method="post">
+                                            @csrf
+                                            <input type="hidden" name="client_id" value="{{$client->id}}">
+                                            <input type="hidden" name="archiveUs" value="0">
+                                            <input type="hidden" name="role" value="client">
 
-                                        <button class="mr-4" title="archive" name="unarchive" value="">
-                                            <svg xmlns="http://www.w3.org/2000/svg" height="24" fill="green"
-                                                viewBox="0 -960 960 960" width="24">
-                                                <path
-                                                    d="M480-560 320-400l56 56 64-64v168h80v-168l64 64 56-56-160-160Zm-280-80v440h560v-440H200Zm0 520q-33 0-56.5-23.5T120-200v-499q0-14 4.5-27t13.5-24l50-61q11-14 27.5-21.5T250-840h460q18 0 34.5 7.5T772-811l50 61q9 11 13.5 24t4.5 27v499q0 33-23.5 56.5T760-120H200Zm16-600h528l-34-40H250l-34 40Zm264 300Z" />
-                                            </svg>
+                                            <button class="mr-4" title="archive" name="unarchive" value="">
+                                                <svg xmlns="http://www.w3.org/2000/svg" height="24" fill="green"
+                                                    viewBox="0 -960 960 960" width="24">
+                                                    <path
+                                                        d="M480-560 320-400l56 56 64-64v168h80v-168l64 64 56-56-160-160Zm-280-80v440h560v-440H200Zm0 520q-33 0-56.5-23.5T120-200v-499q0-14 4.5-27t13.5-24l50-61q11-14 27.5-21.5T250-840h460q18 0 34.5 7.5T772-811l50 61q9 11 13.5 24t4.5 27v499q0 33-23.5 56.5T760-120H200Zm16-600h528l-34-40H250l-34 40Zm264 300Z" />
+                                                </svg>
 
-                                        </button>
-                                    </form>
+                                            </button>
+                                        </form>
+                                    @endif
                                 </td>
                                 <td class="pl-8 pt-8 ">
                                     <form action="/archiveUser" method="post">
