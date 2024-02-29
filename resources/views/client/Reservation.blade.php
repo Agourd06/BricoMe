@@ -239,11 +239,11 @@
         artisan_id_input.value = {!! json_encode($reservation->artisan_id) !!};
         form.appendChild(artisan_id_input);
 
-        const R_id_input = document.createElement('input');
-        R_id_input.type = 'hidden';
-        R_id_input.name = 'reservation_id';
-        R_id_input.value = {!! json_encode($reservation->id) !!};
-        form.appendChild(R_id_input);
+        const reservation_id_input = document.createElement('input');
+        reservation_id_input.type = 'hidden';
+        reservation_id_input.name = 'reservation_id';
+        reservation_id_input.value = {!! json_encode($reservation->id) !!};
+        form.appendChild(reservation_id_input);
 
       
 

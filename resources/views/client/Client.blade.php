@@ -59,7 +59,7 @@
                             </div>
 
                             <div class="flex flex-col">
-                                <label for="manufacturer" class="text-sm font-medium text-stone-600">Manufacturer</label>
+                                <label for="manufacturer" class="text-sm font-medium text-stone-600">Competences</label>
 
                                 <select id="manufacturer" name="filterCompetence"
                                     class="mt-2 block w-full rounded-md border border-gray-100 bg-gray-100 px-2 py-2 shadow-sm outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
@@ -88,8 +88,8 @@
                         </div>
 
                         <div class="mt-6 grid w-full grid-cols-2 justify-end space-x-4 md:flex">
-                            <button
-                                class="rounded-lg bg-gray-200 px-8 py-2 font-medium text-gray-700 outline-none hover:opacity-80 focus:ring">Reset</button>
+                            <a href="/Client"
+                                class="rounded-lg bg-gray-200 px-8 py-2 font-medium text-gray-700 outline-none hover:opacity-80 focus:ring">Reset</a>
                             <button
                                 class="rounded-lg bg-blue-600 px-8 py-2 font-medium text-white outline-none hover:opacity-80 focus:ring">Search</button>
                         </div>
@@ -122,7 +122,7 @@
                                 </h3>
                                 <span class="text-sm block text-gray-400 mt-2"> {{ $artisan->user->lname }}
                                     {{ $artisan->user->fname }} </span>
-                                <div class="flex flex-wrap gap-4">
+                                <div class="flex flex-col  gap-2">
                                     @foreach ($artisan->competences as $artisanCompetence)
                                         <p class="text-sm mt-4">
                                             {{ $artisanCompetence->name }}
@@ -149,8 +149,8 @@
                                 </div>
                                 
                                 <div class="flex gap-2 items-center justify-between mt-4">
-                                  <form action="/Profile" method="Post">  <input type="hidden" value="{{$artisan->user->id}}" name="artisan_id"> <button type="submit" class="text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800">Read More</button></form>
-                                  <form action="/Reserve" method="post"> @csrf <input type="hidden" value="{{$artisan->user->id}}" name="artisan_id"> <button type="submit" class="text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800">Resrve</button></form>
+                                  <form action="/Profile" method="Post"> @csrf <input type="hidden" value="{{$artisan->id}}" name="artisan_id"> <button type="submit" class="text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800">Read More</button></form>
+                                  <form action="/Reserve" method="post"> @csrf <input type="hidden" value="{{$artisan->user->id}}" name="artisan_id"> <button type="submit" class="text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800">Reserve</button></form>
 
                                     
                                     </div>
