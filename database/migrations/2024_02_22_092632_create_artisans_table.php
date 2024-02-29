@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('artisans', function (Blueprint $table) {
             $table->id();
+
             $table->string('description');
             $table->enum('availablity' ,['Available','Reserved'])->default('Available');
             $table->string('Avg')->nullable();          
@@ -20,7 +21,6 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
-        
     }
 
     /**

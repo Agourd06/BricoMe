@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\ArtisanController;
+use App\Http\Controllers\ProviderController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
@@ -24,10 +28,6 @@ Route::get('/', function () {
     return view('Login');
 })->middleware(RedirectIfAuthenticated::class);
 
-
-
-
-
 //----------------------------------------------- Client---------------------------------
 
 
@@ -35,13 +35,15 @@ Route::get('/', function () {
 Route::middleware(['auth', 'role:Client'])->group(function () {
 
 
+    Route::get('/Client', [ClientController::class , 'clientArtisans']);
+    Route::get('/Reservation',[ClientController::class, 'showResesvaitons'])->name('reservation');
+    Route::get('/Reservation/{id}/delete',[ClientController::class, 'destroyReservation'])->name('reservation.destroy');
     Route::get('/Client', [ClientController::class, 'clientArtisans']);
+
     Route::match(['get', 'post'], '/Reserve', [ClientController::class, 'Reserve']);
     Route::match(['get', 'post'], '/confirm', [ClientController::class, 'confirmReservation'])->name('confirmReservation');
     Route::post('/repport', [RapportController::class, 'store']);
     Route::get('/reporting', [RapportController::class, 'reporterData']);
-   
-    Route::get('/Reservation',[ClientController::class, 'showResesvaitons'])->name('Reservation');
 
 });
 
@@ -52,12 +54,43 @@ Route::middleware(['auth', 'role:Client'])->group(function () {
 
 //----------------------------------------------- Artisan---------------------------------
 
+Route::match(['get', 'post'], '/artisanRegistration', [ArtisanController::class, 'registration'])->name('login');
 
-Route::middleware(['auth', 'role:Artisan'])->group(function () {
-    Route::get('/Artisan', function () {
-        return view('artisan.Artisan');
+// Application Providers
+Route::get('/auth/github/redirect', [ProviderController::class, 'redirect']);
+Route::get('/auth/github/callback', [ProviderController::class, 'callback']);
+
+// Artisan Account
+Route::middleware(['auth', 'access:artisan'])->group(function () {
+    Route::get('/verify', [ArtisanController::class, 'verify'])->name('verification.notice')->middleware('not_verified');
+    Route::middleware(['verified'])->group(function () {
+        Route::match(['get', 'post'], '/artisan/dashboard', [ArtisanController::class, 'dashboard']);
+        Route::match(['GET', 'PATCH'], '/artisan/profile/public', [ArtisanController::class, 'public_profile']);
+        Route::match(['GET', 'PATCH'], '/artisan/profile/professional', [ArtisanController::class, 'professional_profile']);
+        Route::match(['GET', 'PUT', 'DELETE'], '/artisan/settings', [ArtisanController::class, 'settings']);
+
+        Route::match('POST', '/artisan/add/job/', [ArtisanController::class, 'job']);
+        Route::match('DELETE', '/artisan/delete/job/', [ArtisanController::class, 'job']);
+
+        Route::match('POST', '/artisan/add/cmp', [ArtisanController::class, 'cmp']);
+        Route::match('DELETE', '/artisan/delete/cmp', [ArtisanController::class, 'cmp']);
     });
 });
+
+// Artisan Email Verification
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+    return redirect('/artisan/profile/public')->with('success', 'Your Email Address Is Now Verified !');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+// Resend Email Verification
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+    return back()->with('success', 'Verification link sent!');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+
+
+
 // ---------------------------------------Authentication----------------------------------
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [loginController::class, 'login']);
@@ -88,9 +121,15 @@ Route::middleware(['auth', 'role:Admin'])->group(function () {
     Route::post('/editcom', [adminController::class, 'adminPage']);
     Route::get('/admin', [adminController::class, 'adminPage']);
     Route::get('/adminUsers', [adminController::class, 'UsersAdmin']);
+
     Route::get('/addjob', function () {
     return view('Admin.addJob');
 });
+
+
+    Route::get('/ReclamNotif', function () {
+        return view('Admin.ReclamNotif');
+    });
 });
 
 

@@ -99,13 +99,27 @@ class ClientController extends Controller
             'artisan_id' => $reservationData['artisan_id'],
         ]);
 
-        return Redirect::route('Reservation');
+        return redirect('/Reservation');
     }
 
     public function showResesvaitons()
     {
-        $reservations = Reservation::where('client_id', '=', Auth::user()->client->id)->get();
+        $userId = Auth::id();
 
-        return view('client.Reservation', compact('reservations'));
+        $clientId = client::where('user_id' , $userId)->value('id');
+
+        $reservations = reservation::where('client_id', $clientId)->get();
+
+        return view('client.Reservation', [
+            'reservations' => $reservations,
+        ]);
     }
+
+    public function destroyReservation($id)
+    {
+        reservation::destroy($id);
+        return to_route('reservation');
+
+    }
+
 }
