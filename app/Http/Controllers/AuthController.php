@@ -154,7 +154,7 @@ class AuthController extends Controller
 
                 auth()->login($user);
 
-                return redirect('/Artisan');
+                return redirect('/verify');
 
 
             } elseif ($userData['role'] == 'client') {

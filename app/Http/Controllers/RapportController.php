@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Artisan;
 use App\Models\Client;
 use App\Models\Rapport;
+use App\Models\reservation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -36,21 +38,27 @@ class RapportController extends Controller
             'fname' => $request->input('fname'),
             'email' => $request->input('email'),
             'message' => $request->input('message'),
+            'artisanName' => $request->input('artisanName'),
             'user_id' =>
             $user_id,
         ]);
 
         return redirect('/reporting')->with('success', 'Report submitted successfully!');
     }
-    public function reporterData()
+    public function reporterData(Request $request)
     {
 
         $userid = Auth::id();
         $clientData = Client::with('user')->where('user_id', $userid)->first();
-       
+        $artisanData = Artisan::with('user')->where('id', $request->input('artisan_id'))->first();
+       $artisans = Artisan::with('user')->get();
+        $ReservTotal = reservation::count();
 
         return view('client.repport', [
             'clientData' => $clientData,
+            'ReservTotal' => $ReservTotal,
+            'artisanData' => $artisanData,
+            'artisans' => $artisans,
         ]);
     }
 

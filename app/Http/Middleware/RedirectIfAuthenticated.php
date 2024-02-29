@@ -24,7 +24,7 @@ class RedirectIfAuthenticated
                 if (auth()->User()->isAdmin()) {
                     return redirect('/admin');
                 } elseif (auth()->User()->isArtisan()) {
-                    return redirect('/Artisan');
+                    return redirect('/verify');
                 } elseif (auth()->User()->isClient()) {
                     return redirect('/Client');
                 } else {

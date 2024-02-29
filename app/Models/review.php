@@ -5,16 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Rapport extends Model
+class review extends Model
 {
     use HasFactory;
-
     protected $fillable = [
-        'lname',
-        'fname',
-        'email',
-        'message',
-        'user_id',
-        'artisanName',
+        'rating',
+        'comment',
+        'client_id',
+        'artisan_id',
+        'reservation_id',
     ];
+    
 }

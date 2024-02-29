@@ -17,7 +17,7 @@ class loginController extends Controller
         $authenticatedUser = auth()->user();
 
         if ($authenticatedUser->Artisan) {
-            return redirect('/Artisan');
+            return redirect('/verify');
         }
         
         if ($authenticatedUser->Client) {

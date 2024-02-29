@@ -6,7 +6,10 @@ use App\Models\job;
 use App\Models\Client;
 use App\Models\Artisan;
 use App\Models\Competence;
+use App\Models\Rapport;
+use GrahamCampbell\ResultType\Success;
 use Illuminate\Http\Request;
+use Illuminate\View\ViewException;
 
 class adminController extends Controller
 {
@@ -64,11 +67,14 @@ class adminController extends Controller
         //------------- Show Admin Data-------------
         $jobs = job::all();
         $competences = Competence::with('job')->get();
+        $reclamationCount = Rapport::count();
+
         return view('Admin.dashBoard', [
             'jobs' => $jobs,
             'competences' => $competences,
             'jobCount' => $jobCount,
             'editeJob' => $editeJob,
+            'reclamationCount' => $reclamationCount,
 
             'editeCompetence' => $editeCompetence,
             'competenceCount' => $competenceCount,
@@ -78,11 +84,13 @@ class adminController extends Controller
     {
         // ----------------userAdmin data----------------
         $artisans = Artisan::with('artisanJobs', 'user' )->get();
-        
+        $reclamationCount = Rapport::count();
+
         $Clients = Client::with('user')->get();
         return view('Admin.Users', [
             'artisans' => $artisans,
             'clients' => $Clients,
+            'reclamationCount' => $reclamationCount,
         ]);
     }
     public function archive(Request $request)
@@ -135,5 +143,20 @@ class adminController extends Controller
 
             ]);
         return redirect('/admin');
+    }
+
+    public function reclamation(){
+        $reclamations = Rapport::all();
+        $reclamationCount = Rapport::count();
+        return View('Admin.ReclamNotif', [
+            'reclamations'=> $reclamations,
+            'reclamationCount'=> $reclamationCount,
+        ]);
+
+    }
+    public function deletRepport(Request $request){
+        Rapport::destroy($request->input('repport_id'));
+        return redirect('/ReclamNotif')->with('success' , 'Reclamation Deleted Successfully');
+
     }
 }

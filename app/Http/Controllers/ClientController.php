@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\job;
 use App\Models\User;
 use App\Models\Client;
+use App\Models\review;
 use App\Models\Artisan;
 use App\Models\Competence;
 use App\Models\reservation;
@@ -50,12 +51,14 @@ class ClientController extends Controller
 
         $jobs = job::all();
         $competences = Competence::all();
+        $ReservTotal = reservation::count();
 
         return view('client.Client', [
             'artisans' => $artisans,
             'jobs' => $jobs,
             'competences' => $competences,
             'citys' => $citys,
+            'ReservTotal' => $ReservTotal,
         ]);
     }
 
@@ -65,9 +68,11 @@ class ClientController extends Controller
         $ArtisanData = Artisan::with('artisanJobs', 'user', 'artisanCompetence')
             ->where('user_id', $artisan_id)
             ->firstOrFail();
+            $ReservTotal = reservation::count();
 
         return view('client.reserveArtisan', [
             'ArtisanData' => $ArtisanData,
+            'ReservTotal' => $ReservTotal,
         ]);
     }
     public function confirmReservation(Request $request)
@@ -84,10 +89,9 @@ class ClientController extends Controller
             'artisan_id' => '',
         ]);
         $reservationData['client_id'] = Auth::id();
-        $clientId = client::where('user_id' , $reservationData['client_id'])->value('id');
+        $clientId = client::where('user_id', $reservationData['client_id'])->value('id');
 
-//        dd($reservationData['job']);
-         reservation::create([
+        reservation::create([
             'artisanName' => $reservationData['fname'] . ' ' . $reservationData['lname'],
             'adress' => $reservationData['adress'],
             'job_id' => $reservationData['job'],
@@ -106,20 +110,39 @@ class ClientController extends Controller
     {
         $userId = Auth::id();
 
-        $clientId = client::where('user_id' , $userId)->value('id');
+        $clientId = client::where('user_id', $userId)->value('id');
 
-        $reservations = reservation::where('client_id', $clientId)->get();
-
+        $reservations = Reservation::where('client_id', $clientId)
+        ->orderBy('created_at', 'desc')
+        ->get();
+        $ReservTotal = reservation::count();
         return view('client.Reservation', [
             'reservations' => $reservations,
+            'ReservTotal' => $ReservTotal,
         ]);
     }
 
-    public function destroyReservation($id)
+    public function destroyReservation(Request $request)
     {
-        reservation::destroy($id);
-        return to_route('reservation');
 
+        reservation::destroy($request->input('R_id'));
+        return redirect('/Reservation');
     }
+    public function Rated(Request $request)
+    {
+        $data =  review::where('client_id', $request->input('client_id'))->where('artisan_id',  $request->input('artisan_id'))->where('reservation_id' ,$request->input('reservation_id') )->first();
+        if ($data == null) {
+            review::create([
+                'rating' => $request->input('rating'),
+                'comment' => $request->input('comment'),
+                'client_id' => $request->input('client_id'),
+                'artisan_id' => $request->input('artisan_id'),
+                'reservation_id' => $request->input('reservation_id'),
 
+            ]);
+            return redirect('/Reservation');
+        } else {
+            return redirect('/Reservation')->with('error', "You Can't spam review");
+        }
+    }
 }
