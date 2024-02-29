@@ -69,6 +69,7 @@ class AuthController extends Controller
                     'description' => 'required',
                     'job_id' => 'required',
                     'skills' => 'required|array',
+                    'type' => 'artisan',
                     'multiplePhotos.*' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:2048'],
                 ], [
                     'description.required' => 'Description is empty! Please fill it out.',
@@ -159,9 +160,9 @@ class AuthController extends Controller
             } elseif ($userData['role'] == 'client') {
              //--------------------- Insert Clients----------------------
 
-                Client::create([
+                Admin::create([
                     'user_id' => $user->id,
-                    'description' => $clientData['description'],
+                    // 'description' => $clientData['description'],
                 ]);
                 auth()->login($user);
 

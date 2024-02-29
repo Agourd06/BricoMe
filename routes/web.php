@@ -28,11 +28,6 @@ Route::get('/', function () {
     return view('Login');
 })->middleware(RedirectIfAuthenticated::class);
 
-
-
-
-
-
 //----------------------------------------------- Client---------------------------------
 
 
@@ -132,8 +127,17 @@ Route::middleware(['auth', 'role:Admin'])->group(function () {
     Route::get('/ReclamNotif', [adminController::class, 'reclamation']);
     Route::post('/deletRepport', [adminController::class, 'deletRepport']);
 
-  
+    Route::get('/addjob', function () {
+    return view('Admin.addJob');
 });
+
+
+    Route::get('/ReclamNotif', function () {
+        return view('Admin.ReclamNotif');
+    });
+
+});
+
 
 
 // --------------------- Reservation ---------------------

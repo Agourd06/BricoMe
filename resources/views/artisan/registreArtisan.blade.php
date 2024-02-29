@@ -198,7 +198,7 @@
                 var selectedJobId = $(this).val();
 
                 skillsDropdown.find('option').hide();
-
+                
                 skillsDropdown.find('option[data-job="' + selectedJobId + '"], option[value=""]').show();
 
                 if (selectedJobId === '') {
